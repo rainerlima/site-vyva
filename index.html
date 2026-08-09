@@ -1,0 +1,1866 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta property="og:title" content="Vyva Moda" />
+<meta property="og:description" content="Confira as novidades e ofertas da Vyva Moda." />
+<!-- Substitua 'logo.png' pelo nome exato do seu arquivo de imagem -->
+<meta property="og:image" content="https://vyvamoda.com.br/logo-zap" />
+<meta property="og:url" content="https://vyvamoda.com.br" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VYVA MODA - Elegância que Veste</title>
+
+    <!-- Adicione a linha do Font Awesome aqui: -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- LOGO URL: -->
+    <link rel="icon" type="image/png" href="imagens/logo-pequena.png.png">
+
+    <!-- Aqui conectamos o visual (CSS) que faremos depois -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- O 'defer' garante que o script só rode após o HTML ser lido -->
+    <script src="script.js" defer></script>
+
+</head>
+
+<body>
+    <!-- Modal de Zoom da Foto -->
+<div id="modal-foto" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center;">
+    <div style="position: relative; max-width: 90%; max-height: 90%;">
+        <span onclick="fecharModalFoto()" style="position: absolute; top: -40px; right: 0; color: #fff; font-size: 30px; font-weight: bold; cursor: pointer;">&times;</span>
+        <img id="img-modal-zoom" src="" style="width: 100%; max-height: 80vh; border-radius: 8px; border: 2px solid #D4AF37;">
+    </div>
+</div>
+
+    <!-- CABEÇALHO DO SITE -->
+    <header>
+        <!-- Adicione a linha da imagem aqui: -->
+        <img src="imagens/vyva-logo.jpg" alt="Logo VYVA" class="logo-site">
+        <h1>VyVA MODA</h1>
+        <p class="subtitle">Elegância que Veste • Atitude que Marca</p>
+
+        <!-- Botão do Menu Hambúrguer (Três Linhas) -->
+    <div class="menu-topo">
+        <button class="btn-hamburguer" onclick="abrirMenuLateral()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+    <!-- Menu Lateral Deslizante (Gaveta) -->
+    <div id="menu-lateral" class="menu-lateral">
+        <div class="menu-lateral-conteudo">
+            <span class="fechar-menu" onclick="fecharMenuLateral()">&times;</span>
+            <h3> VyVA MODA</h3>
+            
+            <div class="filtros-lateral">
+                <button onclick="filtrarProdutos('alfaiataria'); fecharMenuLateral();">Alfaiataria</button>
+                <button onclick="filtrarProdutos('conjunto'); fecharMenuLateral();">Conjuntos</button>
+                <button onclick="filtrarProdutos('macacao'); fecharMenuLateral();">Macacão</button>
+                <button onclick="filtrarProdutos('vestido'); fecharMenuLateral();">Vestidos</button>
+                <button onclick="filtrarProdutos('produto'); fecharMenuLateral();">Todos</button>
+                <button onclick="abrirGuiaMedidas(); fecharMenuLateral();" class="btn-medidas-menu">📏 Medidas</button>
+            </div>
+        </div>
+    </div>
+
+    </header>
+
+    <!-- ÁREA PRINCIPAL QUE DIVIDE PRODUTOS E CARRINHO -->
+    <div class="layout-principal">
+        
+        <!-- COLUNA 1: VITRINE DE PRODUTOS -->
+        <main class="coluna-produtos">
+            
+            <!-- COLEÇÃO NOVA ABAIXO!!! -->
+              <!-- Conjunto Atena -->
+                <article class="produto conjunto">
+    <!-- Carrossel de Mídia -->
+    <div class="carrossel-midia">
+        <img src="imagens/Conjuntoatena.JPG" alt="Conjunto Atena" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntoatenacostas.JPG" alt="Conjunto Atena" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntoatenamarron.jpg" alt="Conjunto Atena" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntoatenatodos.JPG" alt="Conjunto Atena" onclick="abrirModalFoto(this.src)">
+    </div>
+    
+    <h3>Conjunto Atena</h3>
+    <p class="preco">R$ 129,90</p>
+    
+    <div class="seletores">
+        <select id="cor-atena">
+            <option value="Branco">Branco</option>
+            <option value="Marrom">Marrom</option>
+        </select>
+        
+        <select id="tamanho-atena">
+            <option value="M">M</option>
+            <option value="G">G</option>
+        </select>
+    </div>
+    
+    <!-- Botão Adicionar ao Carrinho corrigido (separado do botão de detalhes) -->
+    <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Atena', 129.90, 'cor-atena', 'tamanho-atena')">
+        Adicionar ao Carrinho
+    </button>
+
+    <!-- Botão de ver detalhes posicionado corretamente fora do botão de cima -->
+    <button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+    <!-- Descrição oculta para o modal -->
+    <div class="texto-detalhes-oculto" style="display: none;">
+        <h3>Conjunto Atena</h3>
+        <p class="descricao-geral">O conjunto traz top cropped de um ombro só com detalhe de corrente dourada na alça, combinado à saia midi ajustada com fenda lateral ousada e detalhe de corrente na cintura.</p>
+        <ul class="detalhes-topicos">
+            <li><strong>Tecido:</strong> Malha Anarruga Premium</li>
+            <li><strong>Superiores:</strong> Top cropped um ombro só com alça em corrente dourada</li>
+            <li><strong>Inferiores:</strong> Saia justa com fenda lateral e alça em corrente dourada</li>
+            <li><strong>Cores:</strong> Marrom e Branco</li>
+            <li><strong>Tamanhos:</strong> M e G</li>
+        </ul>
+    </div>
+</article>
+
+            <!-- Conjunto Absolut Noir -->
+                <article class="produto conjunto alfaiataria">
+    <!-- Carrossel de Mídia -->
+    <div class="carrossel-midia">
+        <img src="imagens/Conjuntoabsolutnoirpreto.JPG" alt="Vestido Ravena" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntoabsolutnoirpretocostas.JPG" alt="Vestido Ravena" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntoabsolutnoirbege.jpg" alt="Vestido Ravena" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntoabsolutnoirbegecostas.jpg" alt="Vestido Ravena" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntoabsolutnoirtodos.JPG" alt="Vestido Ravena" onclick="abrirModalFoto(this.src)">
+    </div>
+    
+    <h3>Conjunto Absolut Noir</h3>
+    <p class="preco">R$ 129,90</p>
+    
+    <div class="seletores">
+        <select id="cor-absolut">
+            <option value="Preto">Preto</option>
+            <option value="Bege">Bege</option>
+        </select>
+        
+        <select id="tamanho-absolut">
+            <option value="M">M</option>
+            <option value="G">G</option>
+        </select>
+    </div>
+    
+    <!-- Botão Adicionar ao Carrinho corrigido (separado do botão de detalhes) -->
+    <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Absolut Noir', 129.90, 'cor-absolut', 'tamanho-absolut')">
+        Adicionar ao Carrinho
+    </button>
+
+    <!-- Botão de ver detalhes posicionado corretamente fora do botão de cima -->
+    <button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+    <!-- Descrição oculta para o modal -->
+    <div class="texto-detalhes-oculto" style="display: none;">
+        <h3>Conjunto Absolut Noir</h3>
+        <p class="descricao-geral">O conjunto traz colete estilo blazer alongado sem mangas com alças finas ajustáveis, combinado com saia ajustada curta em um visual contemporâneo.</p>
+        <ul class="detalhes-topicos">
+            <li><strong>Tecido:</strong> Alfaiataria Encorpada</li>
+            <li><strong>Superiores:</strong> Colete alongado estilo blazer com corte assimétrico</li>
+            <li><strong>Inferiores:</strong> Saia curta justa acinturada</li>
+            <li><strong>Cores:</strong> Preto e Bege</li>
+            <li><strong>Tamanhos:</strong> M e G</li>
+        </ul>
+    </div>
+</article>
+
+            <!-- Conjunto Serena -->
+                <article class="produto conjunto">
+    <!-- Carrossel de Mídia -->
+    <div class="carrossel-midia">
+        <img src="imagens/Conjuntoserena.JPG" alt="Conjunto Serena" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntoserenacostas.JPG" alt="Conjunto Serena" onclick="abrirModalFoto(this.src)">
+    </div>
+    
+    <h3>Conjunto Serena</h3>
+    <p class="preco">R$ 129,90</p>
+    
+    <div class="seletores">
+        <select id="cor-serena">
+            <option value="Preto">Preto</option>
+        </select>
+        
+        <select id="tamanho-serena">
+            <option value="M">M</option>
+            <option value="G">G</option>
+        </select>
+    </div>
+    
+    <!-- Botão Adicionar ao Carrinho corrigido (separado do botão de detalhes) -->
+    <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Serena', 129.90, 'cor-serena', 'tamanho-serena')">
+        Adicionar ao Carrinho
+    </button>
+
+    <!-- Botão de ver detalhes posicionado corretamente fora do botão de cima -->
+    <button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+    <!-- Descrição oculta para o modal -->
+    <div class="texto-detalhes-oculto" style="display: none;">
+        <h3>Conjunto Serena</h3>
+        <p class="descricao-geral">O conjunto traz a blusa de corte reto com franzido delicado nos ombros e cós ajustado, acompanhado de saia longa de cintura alta que garante mobilidade e estilo.</p>
+        <ul class="detalhes-topicos">
+            <li><strong>Tecido:</strong> Malha de Viscose</li>
+            <li><strong>Superiores:</strong> Blusa de caimento solto e corte reto</li>
+            <li><strong>Inferiores:</strong> Saia longa de cintura alta</li>
+            <li><strong>Cores:</strong> Preto</li>
+            <li><strong>Tamanhos:</strong> M e G</li>
+        </ul>
+    </div>
+</article>
+
+            <!-- Vestido Ravena -->
+                <article class="produto conjunto vestido">
+    <!-- Carrossel de Mídia -->
+    <div class="carrossel-midia">
+        <img src="imagens/Ravenamarrom.JPG" alt="Vestido Ravena" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/ravenamarromcostas.JPG" alt="Vestido Ravena" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/ravenapreto.jpg" alt="Vestido Ravena" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/ravenapretocostas.jpg" alt="Vestido Ravena" onclick="abrirModalFoto(this.src)">
+    </div>
+    
+    <h3>Vestido Ravena</h3>
+    <p class="preco">R$ 70,00</p>
+    
+    <div class="seletores">
+        <select id="cor-ravena">
+            <option value="Marrom">Marrom</option>
+            <option value="Preto">Preto</option>
+        </select>
+        
+        <select id="tamanho-ravena">
+            <option value="M">M</option>
+            <option value="G">G</option>
+        </select>
+    </div>
+    
+    <!-- Botão Adicionar ao Carrinho corrigido (separado do botão de detalhes) -->
+    <button class="btn-add" onclick="adicionarAoCarrinho('Vestido Ravena', 70.00, 'cor-ravena', 'tamanho-ravena')">
+        Adicionar ao Carrinho
+    </button>
+
+    <!-- Botão de ver detalhes posicionado corretamente fora do botão de cima -->
+    <button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+    <!-- Descrição oculta para o modal -->
+    <div class="texto-detalhes-oculto" style="display: none;">
+        <h3>Vestido Ravena</h3>
+        <p class="descricao-geral">Vestido gola alta com franzidos sutis nos ombros, detalhe costas nuas e comprimento mini.</p>
+        <ul class="detalhes-topicos">
+            <li><strong>Tecido:</strong> Malha Premium</li>
+            <li><strong>Superiores:</strong> Gola alta, ombros levemente estruturados e saia curta</li>
+            <li><strong>Cores:</strong> Marrom e Preto</li>
+            <li><strong>Tamanhos:</strong> M e G</li>
+        </ul>
+    </div>
+</article>
+              <!-- Conjunto Celeste -->
+                <article class="produto conjunto alfaiataria">
+    <!-- Carrossel de Mídia -->
+    <div class="carrossel-midia">
+        <img src="imagens/Conjuntocelestesorriso.JPG" alt="Conjunto Celeste" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntocelestecostas.JPG" alt="Conjunto Celeste" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntocelestebranco.jpg" alt="Conjunto Celeste" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntocelestebrancocostas.jpg" alt="Conjunto Celeste" onclick="abrirModalFoto(this.src)">
+    </div>
+    
+    <h3>Conjunto Celeste</h3>
+    <p class="preco">R$ 159,90</p>
+    
+    <div class="seletores">
+        <select id="cor-celeste">
+            <option value="azul">Azul bebê</option>
+            <option value="Branco">Branco</option>
+        </select>
+        
+        <select id="tamanho-celeste">
+            <option value="M">M</option>
+            <option value="G">G</option>
+        </select>
+    </div>
+    
+    <!-- Botão Adicionar ao Carrinho corrigido (separado do botão de detalhes) -->
+    <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Celeste', 159.90, 'cor-celeste', 'tamanho-celeste')">
+        Adicionar ao Carrinho
+    </button>
+
+    <!-- Botão de ver detalhes posicionado corretamente fora do botão de cima -->
+    <button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+    <!-- Descrição oculta para o modal -->
+    <div class="texto-detalhes-oculto" style="display: none;">
+        <h3>Conjunto Celeste</h3>
+        <p class="descricao-geral">O conjunto traz cropped com detalhe franzido central no busto, combinando à calça pantalona de cintura alta que traz leveza e caimento perfeito para passeios e eventos de dia.</p>
+        <ul class="detalhes-topicos">
+            <li><strong>Tecido:</strong> Alfaiataria Premium</li>
+            <li><strong>Superiores:</strong> Top cropped de alças largas com detalhe franzido no busto</li>
+            <li><strong>Inferiores:</strong> Calça pantalona de cintura alta com botão</li>
+            <li><strong>Cores:</strong> Azul bebê e Branco</li>
+            <li><strong>Tamanhos:</strong> M e G</li>
+        </ul>
+    </div>
+</article>
+              <!-- Conjunto Capri Oliva -->
+                <article class="produto conjunto">
+    <!-- Carrossel de Mídia -->
+    <div class="carrossel-midia">
+        <img src="imagens/Conjuntocaprioliva.JPG" alt="Conjunto Colete Oliveira" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntocapriolivalado.JPG" alt="Conjunto Colete Oliveira" onclick="abrirModalFoto(this.src)">
+    </div>
+    
+    <h3>Conjunto Capri Oliva</h3>
+    <p class="preco">R$ 159,90</p>
+    
+    <div class="seletores">
+        <select id="cor-caprioliva">
+            <option value="VerdeOliva">Verde Oliva</option>
+        </select>
+        
+        <select id="tamanho-coleteoliveira">
+            <option value="M">M</option>
+            <option value="G">G</option>
+        </select>
+    </div>
+    
+    <!-- Botão Adicionar ao Carrinho corrigido (separado do botão de detalhes) -->
+    <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Capri Oliva', 159.90, 'cor-caprioliva', 'tamanho-caprioliva')">
+        Adicionar ao Carrinho
+    </button>
+
+    <!-- Botão de ver detalhes posicionado corretamente fora do botão de cima -->
+    <button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+    <!-- Descrição oculta para o modal -->
+    <div class="texto-detalhes-oculto" style="display: none;">
+        <h3>Conjunto Capri Oliva</h3>
+        <p class="descricao-geral">O conjunto une o top cropped de decote transpassado em V com abotoamento lateral à calça pantalona de cintura alta com pregas e cinto com fivela encorpada.</p>
+        <ul class="detalhes-topicos">
+            <li><strong>Tecido:</strong> Cetim</li>
+            <li><strong>Superiores:</strong> Top cropped transpassado com decote em V</li>
+            <li><strong>Inferiores:</strong> Calça pantalona de cintura alta com cinto estilo zig-zag</li>
+            <li><strong>Cores:</strong> Verde Oliva</li>
+            <li><strong>Tamanhos:</strong> M e G</li>
+        </ul>
+    </div>
+</article>
+             <!-- Conjunto Colete -->
+                <article class="produto conjunto alfaiataria">
+    <!-- Carrossel de Mídia -->
+    <div class="carrossel-midia">
+        <img src="imagens/Conjuntocoleteoliveira.JPG" alt="Conjunto Colete Oliveira" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntocoleteoliveiracostas.JPG" alt="Conjunto Colete Oliveira" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntocoletemarrom.jpg" alt="Conjunto Colete Oliveira" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntocoletemarromcostas.jpg" alt="Conjunto Colete Oliveira" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntocoletebranco.jpg" alt="Conjunto Colete Oliveira" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntocoletebrancocostas.jpg" alt="Conjunto Colete Oliveira" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntocoleteoliveiratodos.JPG" alt="Conjunto Colete Oliveira" onclick="abrirModalFoto(this.src)">
+    </div>
+    
+    <h3>Conjunto Colete Oliveira</h3>
+    <p class="preco">R$ 129,90</p>
+    
+    <div class="seletores">
+        <select id="cor-coleteoliveira">
+            <option value="Caqui">Caqui</option>
+            <option value="Marrom">Marrom</option>
+            <option value="Branco">Branco</option>
+        </select>
+        
+        <select id="tamanho-coleteoliveira">
+            <option value="M">M</option>
+            <option value="G">G</option>
+        </select>
+    </div>
+    
+    <!-- Botão Adicionar ao Carrinho corrigido (separado do botão de detalhes) -->
+    <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Colete Oliveira', 129.90, 'cor-coleteoliveira', 'tamanho-coleteoliveira')">
+        Adicionar ao Carrinho
+    </button>
+
+    <!-- Botão de ver detalhes posicionado corretamente fora do botão de cima -->
+    <button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+    <!-- Descrição oculta para o modal -->
+    <div class="texto-detalhes-oculto" style="display: none;">
+        <h3>Conjunto Colete Oliveira</h3>
+        <p class="descricao-geral">O conjunto apresenta colete estruturado sem mangas com gola alfaiataria e botões acompanhado de short-saia de cintura alta que entrega um visual sofisticado e marcante.</p>
+        <ul class="detalhes-topicos">
+            <li><strong>Tecido:</strong> Alfaiataria Flat</li>
+            <li><strong>Superiores:</strong> Colete cropped com gola e botões frontais</li>
+            <li><strong>Inferiores:</strong> Short-saia de cintura alta com cós estruturado</li>
+            <li><strong>Cores:</strong> Caqui, Marrom e Branco</li>
+            <li><strong>Tamanhos:</strong> M e G</li>
+        </ul>
+    </div>
+</article>
+
+            <!-- Macaquinho zara -->
+                <article class="produto macacao">
+    <!-- Carrossel de Mídia -->
+    <div class="carrossel-midia">
+        <img src="imagens/Macaquinhozara.JPG" alt="Macaquinho Zara" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Macaquinhozaracostas.JPG" alt="Macaquinho Zara" onclick="abrirModalFoto(this.src)">
+    </div>
+    
+    <h3>Macaquinho Zara</h3>
+    <p class="preco">R$ 70,00</p>
+    
+    <div class="seletores">
+        <select id="cor-zara">
+            <option value="Preto">Preto</option>
+        </select>
+        
+        <select id="tamanho-zara">
+            <option value="U">Único</option>
+        </select>
+    </div>
+    
+    <!-- Botão Adicionar ao Carrinho corrigido (separado do botão de detalhes) -->
+    <button class="btn-add" onclick="adicionarAoCarrinho('Macaquinho Zara', 70.00, 'cor-zara', 'tamanho-zara')">
+        Adicionar ao Carrinho
+    </button>
+
+    <!-- Botão de ver detalhes posicionado corretamente fora do botão de cima -->
+    <button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+    <!-- Descrição oculta para o modal -->
+    <div class="texto-detalhes-oculto" style="display: none;">
+        <h3>Macaquinho Zara</h3>
+        <p class="descricao-geral">O macaquinho apresenta na parte de cima mangas franzidas, caimento blusado combinado com short-saia de comprimento mini e babado de leve.</p>
+        <ul class="detalhes-topicos">
+            <li><strong>Tecido:</strong> Alfaiataria leve</li>
+            <li><strong>Superiores:</strong> Top cropped com gola encorpada e decote discreto</li>
+            <li><strong>Inferiores:</strong> Short-saia justa acinturada com babado leve</li>
+            <li><strong>Cores:</strong> Preto</li>
+            <li><strong>Tamanhos:</strong> Tamanho Único</li>
+        </ul>
+    </div>
+</article>
+
+            <!-- Conjunto Verona -->
+                <article class="produto conjunto">
+    <!-- Carrossel de Mídia -->
+    <div class="carrossel-midia">
+        <img src="imagens/ConjuntoVerona.JPG" alt="Conjunto Verona" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/ConjuntoVeronacostas.JPG" alt="Conjunto Verona" onclick="abrirModalFoto(this.src)">
+    </div>
+    
+    <h3>Conjunto Verona</h3>
+    <p class="preco">R$ 50,00</p>
+    
+    <div class="seletores">
+        <select id="cor-verona">
+            <option value="Preto">Preto</option>
+        </select>
+        
+        <select id="tamanho-verona">
+            <option value="U">Único</option>
+        </select>
+    </div>
+    
+    <!-- Botão Adicionar ao Carrinho corrigido (separado do botão de detalhes) -->
+    <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Verona', 50.00, 'cor-verona', 'tamanho-verona')">
+        Adicionar ao Carrinho
+    </button>
+
+    <!-- Botão de ver detalhes posicionado corretamente fora do botão de cima -->
+    <button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+    <!-- Descrição oculta para o modal -->
+    <div class="texto-detalhes-oculto" style="display: none;">
+        <h3>Conjunto Verona</h3>
+        <p class="descricao-geral">O conjunto unifica o top cropped com gola alta no estilo frente unica ao short short-saia de cós alto com babado leve.</p>
+        <ul class="detalhes-topicos">
+            <li><strong>Tecido:</strong> Malha Premium</li>
+            <li><strong>Superiores:</strong> Top cropped frente única com gola alta</li>
+            <li><strong>Inferiores:</strong> Short-saia com cós largo e modelagem soltinha</li>
+            <li><strong>Cores:</strong> Preto</li>
+            <li><strong>Tamanhos:</strong> Tamanho Único</li>
+        </ul>
+    </div>
+</article>
+
+             <!-- Macaquinho Lisa -->
+                <article class="produto macacao">
+    <!-- Carrossel de Mídia -->
+    <div class="carrossel-midia">
+        <img src="imagens/macaquinholisarosa.JPG" alt="Macaquinho Lisa" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/macaquinholisarosacostas.JPG" alt="Macaquinho Lisa" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/macaquinholisaazul.jpg" alt="Macaquinho Lisa - Costas" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/macaquinholisaazulcostas.jpg" alt="Macaquinho Lisa" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Macaquinholisapreto.jpg" alt="Macaquinho Lisa" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Macaquinholisapretocostas.jpg" alt="Macaquinho Lisa" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Macaquinholisacinza.jpg" alt="Macaquinho Lisa - Costas" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Macaquinholisacinzacostas.jpg" alt="Macaquinho Lisa" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Macaquinholisanude.jpg" alt="Macaquinho Lisa" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Macaquinholisanudecostas.jpg" alt="Macaquinho Lisa" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Macaquinholisabege.jpg" alt="Macaquinho Lisa - Costas" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Macaquinholisabegecostas.jpg" alt="Macaquinho Lisa" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Macaquinholisalilas.jpg" alt="Macaquinho Lisa" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Macaquinholisalilascostas.jpg" alt="Macaquinho Lisa" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Macaquinholisavermelho.jpg" alt="Macaquinho Lisa - Costas" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Macaquinholisavermelhocostas.jpg" alt="Macaquinho Lisa" onclick="abrirModalFoto(this.src)">
+    </div>
+    
+    <h3>Macaquinho Lisa</h3>
+    <p class="preco">R$ 50,00</p>
+    
+    <div class="seletores">
+        <select id="cor-macaquinholisa">
+            <option value="Vinho">Vinho</option>
+            <option value="Azul Royal">Azul Royal</option>
+            <option value="Preto">Preto</option>
+            <option value="Cinza">Cinza</option>
+            <option value="Nude">Nude</option>
+            <option value="Bege">Bege</option>
+            <option value="Lilás">Lilás</option>
+            <option value="Vermelho">Vermelho</option>
+        
+        </select>
+        
+        <select id="tamanho-macaquinholisa">
+            <option value="U">Único</option>
+        </select>
+    </div>
+    
+    <!-- Botão Adicionar ao Carrinho corrigido (separado do botão de detalhes) -->
+    <button class="btn-add" onclick="adicionarAoCarrinho('Macaquinho Lisa', 50.00, 'cor-macaquinholisa', 'tamanho-macaquinholisa')">
+        Adicionar ao Carrinho
+    </button>
+
+    <!-- Botão de ver detalhes posicionado corretamente fora do botão de cima -->
+    <button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+    <!-- Descrição oculta para o modal -->
+    <div class="texto-detalhes-oculto" style="display: none;">
+        <h3>Macaquinho Lisa</h3>
+        <p class="descricao-geral">O macaquinho possui decote reto sem alças, modelagem curta fluida e faixa no mesmo tecido para amarração na cintura, valorizando a silhueta com conforto.</p>
+        <ul class="detalhes-topicos">
+            <li><strong>Tecido:</strong> Viscose</li>
+            <li><strong>Superiores:</strong> Decote tomara que caia com elastico para melhor sustentação</li>
+            <li><strong>Extra:</strong> Acompanha cinto para amarração acinturada</li>
+            <li><strong>Cores:</strong> Vinho, Azul Royal, Preto, Cinza, Nude, Bege, Lilás e Vermelho</li>
+            <li><strong>Tamanhos:</strong> Único</li>
+        </ul>
+    </div>
+</article>
+
+
+
+
+             <!-- Vestido Glamour Noir -->
+                <article class="produto vestido">
+    <!-- Carrossel de Mídia -->
+    <div class="carrossel-midia">
+        <img src="imagens/glamournoir.JPG" alt="Vestido Glamour Noir" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/glamournoircostas.JPG" alt="Vestido Glamour Noir" onclick="abrirModalFoto(this.src)">
+    </div>
+    
+    <h3>Vestido Glamour Noir</h3>
+    <p class="preco">R$ 70,00</p>
+    
+    <div class="seletores">
+        <select id="cor-glamournoir">
+            <option value="Preto">Preto</option>
+        </select>
+        
+        <select id="tamanho-glamournoir">
+            <option value="U">Único</option>
+        </select>
+    </div>
+    
+    <!-- Botão Adicionar ao Carrinho corrigido (separado do botão de detalhes) -->
+    <button class="btn-add" onclick="adicionarAoCarrinho('Vestido Glamour Noir', 70.00, 'cor-glamournoir', 'tamanho-glamournoir')">
+        Adicionar ao Carrinho
+    </button>
+
+    <!-- Botão de ver detalhes posicionado corretamente fora do botão de cima -->
+    <button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+    <!-- Descrição oculta para o modal -->
+    <div class="texto-detalhes-oculto" style="display: none;">
+        <h3>Vestido Glamour Noir</h3>
+        <p class="descricao-geral">O vestido apresenta parte de cima com mangas 3/4 com gola fluida, caimento blusado, com detalhe costas nuas e comprimento mini.</p>
+        <ul class="detalhes-topicos">
+            <li><strong>Tecido:</strong> Malha Premium</li>
+            <li><strong>Superiores:</strong> Mangas 3/4 e gola alta</li>
+            <li><strong>Inferiores:</strong> Comprimento mini acinturado e justo</li>
+            <li><strong>Cores:</strong> Preto</li>
+            <li><strong>Tamanhos:</strong> Tamanho Único</li>
+        </ul>
+    </div>
+</article>
+
+
+             <!-- Conjunto Argolas -->
+                <article class="produto conjunto alfaiataria">
+    <!-- Carrossel de Mídia -->
+    <div class="carrossel-midia">
+        <img src="imagens/Conjuntoargolas.JPG" alt="Conjunto Argolas" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntoargolasbranco.jpg" alt="Conjunto Argolas" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntoargolascostas.JPG" alt="Conjunto Argolas - Costas" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntoargolasbrancocostas.jpg" alt="Conjunto Argolas" onclick="abrirModalFoto(this.src)">
+    </div>
+    
+    <h3>Conjunto Argolas</h3>
+    <p class="preco">R$ 159,90</p>
+    
+    <div class="seletores">
+        <select id="cor-argolas">
+            <option value="Marrom">Marrom</option>
+            <option value="Branco">Branco</option>
+        </select>
+        
+        <select id="tamanho-argolas">
+            <option value="M">M</option>
+            <option value="G">G</option>
+        </select>
+    </div>
+    
+    <!-- Botão Adicionar ao Carrinho corrigido (separado do botão de detalhes) -->
+    <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Argolas', 159.90, 'cor-argolas', 'tamanho-argolas')">
+        Adicionar ao Carrinho
+    </button>
+
+    <!-- Botão de ver detalhes posicionado corretamente fora do botão de cima -->
+    <button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+    <!-- Descrição oculta para o modal -->
+    <div class="texto-detalhes-oculto" style="display: none;">
+        <h3>Conjunto Argolas</h3>
+        <p class="descricao-geral">O conjunto une o top cropped com calças em argolas metálicas à calça pantalona de cintura alta com cinto em elos prateados, garantindo elegância e destaque em qualquer evento.</p>
+        <ul class="detalhes-topicos">
+            <li><strong>Tecido:</strong> Crepe Alfaiataria</li>
+            <li><strong>Superiores:</strong> Top cropped com detalhe de argolas metálicas nas alças</li>
+            <li><strong>Inferiores:</strong> Calça pantalona com cinto de elos metálicos combinando</li>
+            <li><strong>Cores:</strong> Marrom e Branco</li>
+            <li><strong>Tamanhos:</strong> M e G</li>
+        </ul>
+    </div>
+</article>
+            <!-- COLEÇÃO NOVA ACIMA!!! -->
+            
+            <!-- Produto 1 -->
+            <article class="produto conjunto alfaiataria">
+                <!-- Substitua o link abaixo pela foto real da roupa depois -->
+                <img src="imagens/majestade.jpg.jfif" onclick="abrirModalFoto(this.src)" style="cursor: pointer;" alt="Conjunto Majestade">
+                <h3>Conjunto Majestade</h3>
+                <p class="preco">R$ 179,99</p>
+                
+                <div class="seletores">
+                    <select id="cor-majestade">
+                        <option value="Branco">Branco</option>
+                        <option value="Marrom">Marrom</option>
+                        <option value="Preto">Preto</option>
+                    </select>
+                    <select id="tamanho-majestade">
+                        <option value="P">P</option>
+                        <option value="M">M</option>
+                        <option value="G">G</option>
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Majestade', 179.99, 'cor-majestade', 'tamanho-majestade')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Conjunto Majestade</h3>
+    <p class="descricao-geral">O conjunto traz camisa cropped estruturada com mangas curtas e calça de cintura alta com bolsos.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Alfaiataria</li>
+        <li><strong>Superiores:</strong> Camisa cropped acinturada com gola e botões</li>
+        <li><strong>Inferiores:</strong> Calça cintura alta estruturada com bolsos</li>
+        <li><strong>Cores:</strong> Branco, Marrom e Preto</li>
+        <li><strong>Tamanhos:</strong> P, M e G</li>
+    </ul>
+</div>
+            </article>
+
+            <!-- Produto 2 -->
+            <article class="produto conjunto">
+                <div class="carrossel-midia">
+        <img src="imagens/Conjuntobarbie.jpg" alt="Conjunto Barbie" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntobarbiecostas.JPG" alt="Conjunto Barbie - Costas" onclick="abrirModalFoto(this.src)">
+    </div>
+                <h3>Conjunto Barbie Chic</h3>
+                <p class="preco">R$ 45,00</p>
+                
+                <div class="seletores">
+                    <select id="cor-barbie">
+                        <option value="Rosa">Rosa</option>
+                
+                    </select>
+                    <select id="tamanho-barbie">
+                        <option value="U">Único</option>
+                        
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Barbie Chic', 45.00, 'cor-barbie', 'tamanho-barbie')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Conjunto Barbie Chic</h3>
+    <p class="descricao-geral">O conjunto combina top cropped de um ombro só com detalhe de amarração e saia curta de cintura alta com fenda charmosa na barra.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Malha Ponto Roma com Elastano</li>
+        <li><strong>Superiores:</strong> Top de um ombro só com ajuste lateral</li>
+        <li><strong>Inferiores:</strong> Saia curta justa com fenda frontal</li>
+        <li><strong>Cores:</strong> Rosa</li>
+        <li><strong>Tamanhos:</strong> Tamanho Único</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+
+
+         <!-- Produto 3 -->
+            <article class="produto conjunto alfaiataria">
+                <!-- Substitua o link abaixo pela foto real da roupa depois -->
+                <img src="imagens/alfaiataria-solare.jpg" onclick="abrirModalFoto(this.src)" style="cursor: pointer;" alt="Conjunto Alfaiataria Solare">
+                <h3>Conjunto Solare</h3>
+                <p class="preco">R$ 65,00</p>
+                
+                <div class="seletores">
+                    <select id="cor-solare">
+                        <option value="Amarelo manteiga">Amarelo manteiga</option>
+                        <option value="Marrom">Marrom</option>
+                
+                    </select>
+                    <select id="tamanho-solare">
+                        <option value="G">G</option>
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Solare', 65.00, 'cor-solare', 'tamanho-solare')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Conjunto Solare</h3>
+    <p class="descricao-geral">O conjunto combina blusa a blusa de decote halter neck ao short de alfaiataria com bolsos e caimento soltinho, garantindo elegancia e leveza.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Alfaiataria Flat</li>
+        <li><strong>Superiores:</strong> Blusa estilo halter neck com detalhe no pescoço</li>
+        <li><strong>Inferiores:</strong> Short cintura alta com bolsos laterais e funcionais</li>
+        <li><strong>Cores:</strong> Amarelo Manteiga e Marrom</li>
+        <li><strong>Tamanhos:</strong> G</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+            <!-- Brasilidade -->
+            <article class="produto conjunto">
+                <div class="carrossel-midia">
+        <img src="imagens/Conjuntobrasilidade.jpg" alt="Conjunto Brasilidade" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntobrasilidadecostas.JPG" alt="Conjunto Brasilidade - Costas" onclick="abrirModalFoto(this.src)">
+    </div>
+                <h3>Conjunto Brasilidade</h3>
+                <p class="preco">R$ 30,00</p>
+                
+                <div class="seletores">
+                    <select id="cor-brasilidade">
+                        <option value="Verde">Única</option>  
+                    </select>
+                    <select id="tamanho-brasilidade">
+                        <option value="U">Único</option>    
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Brasilidade', 30.00, 'cor-brasilidade', 'tamanho-brasilidade')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Conjunto Brasilidade</h3>
+    <p class="descricao-geral">O conjunto traz o top tomara que caia com estampa botânica/fauna colorida em contraste com a saia justa preta.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Suplex (top) e Viscolycra (saia)</li>
+        <li><strong>Superiores:</strong> Top tomara que caia estampado com tema tropical</li>
+        <li><strong>Inferiores:</strong> Saia curta/midi justa de cintura alta</li>
+        <li><strong>Cores:</strong> Estampa única</li>
+        <li><strong>Tamanhos:</strong> Tamanho Único</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+            <!-- Capri Royal -->
+            <article class="produto conjunto">
+                <div class="carrossel-midia">
+        <img src="imagens/Conjuntocapriroyal.jpg" alt="Conjunto Capri Royal" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntocapriroyal costas.JPG" alt="Conjunto Capri Royal - Costas" onclick="abrirModalFoto(this.src)">
+    </div>
+                <h3>Conjunto Capri Royal</h3>
+                <p class="preco">R$ 30,00</p>
+                
+                <div class="seletores">
+                    <select id="cor-capri">
+                        <option value="Capri">Única</option>
+                       
+                    </select>
+                    <select id="tamanho-capri">
+                        <option value="U">Único</option>
+                        
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Capri Royal', 30.00, 'cor-capri', 'tamanho-capri')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Conjunto Capri Royal</h3>
+    <p class="descricao-geral">O conjunto traz a combinação perfeita do top sem alça estampado com short saia de cintura alta, oferecendo conforto, leveza e versatilidade.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Suplex (top) e Anarruga de algodão (short saia)</li>
+        <li><strong>Superiores:</strong> Top sem alça estampado</li>
+        <li><strong>Inferiores:</strong> Short saia de cintura alta com fenda charmosa</li>
+        <li><strong>Cores:</strong> Estampa Única</li>
+        <li><strong>Tamanhos:</strong> Tamanho Único</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+             <!-- Produto 7 -->
+            <article class="produto conjunto alfaiataria">
+                <img src="imagens/conjunto-dubai.jpg" onclick="abrirModalFoto(this.src)" style="cursor: pointer;" alt="Conjunto Dubai">
+                <h3>Conjunto Dubai</h3>
+                <p class="preco">R$ 80,00</p>
+                
+                <div class="seletores">
+                    <select id="cor-dubai">
+                        <option value="dubai">Marrom</option>
+                       
+                    </select>
+                    <select id="tamanho-dubai">
+                        <option value="M">M</option>
+                        <option value="G">G</option>
+                        
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Dubai', 80.00, 'cor-dubai', 'tamanho-dubai')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Conjunto Dubai</h3>
+    <p class="descricao-geral">O conjunto destaca-se pelo top alongado com fenda frontal de caimento assimétrico, combinado à calça pantalona de cintura alta.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Alfaiataria Leve</li>
+        <li><strong>Superiores:</strong> Top com fenda frontal e sobreposição</li>
+        <li><strong>Inferiores:</strong> Calça pantalona de caimento fluido e elegante (bolsos laterais funcionais)</li>
+        <li><strong>Cores:</strong> Marrom</li>
+        <li><strong>Tamanhos:</strong> M e G</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+             <!-- Produto 8 -->
+            <article class="produto conjunto">
+                <img src="imagens/elegance-listras.jpg" onclick="abrirModalFoto(this.src)" style="cursor: pointer;" alt="Conjunto Elegance Listras">
+                <h3>Conjunto Elegance Listras</h3>
+                <p class="preco">R$ 129,90</p>
+                
+                <div class="seletores">
+                    <select id="cor-elegance">
+                        <option value="Elegance">Bege</option>
+                       
+                    </select>
+                    <select id="tamanho-elegance">
+                        <option value="GG">GG</option>
+                        <option value="G1">G1</option>
+                        
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Elegance Listras', 129.90, 'cor-elegance', 'tamanho-elegance')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Conjunto Elegance Listras</h3>
+    <p class="descricao-geral">O conjunto combina o blazer acinturado de mangas curtas à saia longa plissada compondo visual harmonioso e sofisticado.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Linho Misto Listrado</li>
+        <li><strong>Superiores:</strong> Blazer acinturado com mangas curtas</li>
+        <li><strong>Inferiores:</strong> Saia longa com pregas elegantes</li>
+        <li><strong>Cores:</strong> Bege</li>
+        <li><strong>Tamanhos:</strong> GG e G1</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+             <!-- Produto 9 -->
+            <article class="produto conjunto">
+                <img src="imagens/elegance-vitoria.jpg" onclick="abrirModalFoto(this.src)" style="cursor: pointer;" alt="Conjunto Elegance Vitória">
+                <h3>Conjunto Elegance Vitória</h3>
+                <p class="preco">R$ 179,90 </p>
+                
+                <div class="seletores">
+                    <select id="cor-eleganceV">
+                        <option value="EleganceV">Marrom</option>
+                        <option value="EleganceV">Preto</option>
+                         <option value="EleganceV">Marsala</option>
+                       
+                    </select>
+                    <select id="tamanho-eleganceV">
+                        <option value="P">P</option>
+                        <option value="M">M</option>
+                        <option value="G">G</option>
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Elegance Vitória', 179.90, 'cor-eleganceV', 'tamanho-eleganceV')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Conjunto Elegance Vitória</h3>
+    <p class="descricao-geral">O conjunto combina a fluidez da calça pantalona com uma blusa estruturada e moderna, destacando a cintura com um cinto faixa ajustável para valorizar a silhueta de forma refinada.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Crepe Marrocain</li>
+        <li><strong>Superiores:</strong> Blusas de mangas médias com ajuste na cintura por cinto faixa</li>
+        <li><strong>Inferiores:</strong> Calça de modelagem pantalona com caimento impecável</li>
+        <li><strong>Cores:</strong> Marrom, Verde, e Marsala</li>
+        <li><strong>Tamanhos:</strong> P, M e G</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+            <!-- Conjunto Helena -->
+            <article class="produto conjunto">
+                <div class="carrossel-midia">
+        <img src="imagens/conjunto-helena.jpg" alt="Conjunto Helena" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/caramelo-serena.jpg" alt="Conjunto Helena" onclick="abrirModalFoto(this.src)">
+    </div>
+                <h3>Conjunto Helena</h3>
+                <p class="preco">R$ 139,90</p>
+                
+                <div class="seletores">
+                    <select id="cor-helena">
+                        <option value="helena">Verde Militar</option>
+                        <option value="helena">Mostarda</option>
+                
+                    </select>
+                    <select id="tamanho-helena">
+                        <option value="U">Único</option>
+                        
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Helena', 139.90, 'cor-helena', 'tamanho-helena')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Conjunto Helena</h3>
+    <p class="descricao-geral">O conjunto traz a blusa de mangas curtas e decote canoa associada à saia longa com marias, criando um caimento fluido que garante movimento e presença.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Viscolinho Premium</li>
+        <li><strong>Superiores:</strong> Blusa com caimento soltinho e decote charmoso</li>
+        <li><strong>Inferiores:</strong> Saia longa em camadas com bolsos laterais funcionais</li>
+        <li><strong>Cores:</strong> Verde Militar e Mostarda</li>
+        <li><strong>Tamanhos:</strong> Tamanho Único</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+            <!-- Produto 11 -->
+            <article class="produto conjunto">
+                <img src="imagens/conjunto-hortensia.jpg" onclick="abrirModalFoto(this.src)" style="cursor: pointer;" alt="Conjunto Hortênsia">
+                <h3>Conjunto Hortênsia</h3>
+                <p class="preco">R$ 129,90 </p>
+                
+                <div class="seletores">
+                    <select id="cor-hortensia">
+                        <option value="Hortênsia">Preto</option>
+                       
+                    </select>
+                    <select id="tamanho-hortensia">
+                        <option value="GG">GG</option>
+                        
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Hortênsia', 129.90, 'cor-hortensia', 'tamanho-hortensia')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Conjunto Hortênsia</h3>
+    <p class="descricao-geral">O conjunto combina blusa de modelagem solta e saia com bolsos, unindo leveza e atitude em uma produção monocromática cheia de personalidade.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Viscolycra Encorpada/Moletinho leve</li>
+        <li><strong>Detalhes:</strong> Saia midi/longa com bolsos e caimento fluido</li>
+        <li><strong>Cores:</strong> Preto</li>
+        <li><strong>Tamanhos:</strong> GG</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+            <!-- Produto 13 -->
+            <article class="produto conjunto">
+                <img src="imagens/conjunto-kira.jpg" onclick="abrirModalFoto(this.src)" style="cursor: pointer;" alt="Conjunto Kira">
+                <h3>Conjunto Kira Bicolor</h3>
+                <p class="preco">R$ 159,90 </p>
+                
+                <div class="seletores">
+                    <select id="cor-kira">
+                        <option value="Kira">Marrom + nude</option>
+                       
+                    </select>
+                    <select id="tamanho-kira">
+                        <option value="G">G</option>
+                        <option value="GG">GG</option>
+                        
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Kira', 159.90, 'cor-kira', 'tamanho-kira')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Conjunto Kira Bicolor</h3>
+    <p class="descricao-geral">O conjunto une a blusa de decote V off-white em contraste à calça pantalona, oferencendo um caimento impecável e muito confortavel.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Viscolycra Encorpada</li>
+        <li><strong>Superiores:</strong> Blusa com gola V e mangas médias</li>
+        <li><strong>Inferiores:</strong> Calça pantalona com bolsos funcionais</li>
+        <li><strong>Cores:</strong> Marrom+nude</li>
+        <li><strong>Tamanhos:</strong> G e GG</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+
+            <!-- Produto 14 -->
+            <article class="produto conjunto">
+                <img src="imagens/conjunto-lia.jpg" onclick="abrirModalFoto(this.src)" style="cursor: pointer;" alt="Conjunto Lia">
+                <h3>Conjunto Lia Supreme</h3>
+                <p class="preco">R$ 159,90 </p>
+                
+                <div class="seletores">
+                    <select id="cor-lia">
+                        <option value="Lia">Verde Musgo</option>
+                        <option value="Lia">Azul Marinho</option>
+                        <option value="Lia">Preto</option>
+                       
+                    </select>
+                    <select id="tamanho-lia">
+                       <option value="G">G</option>
+                        <option value="GG">GG</option>
+                        
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Lia', 159.90, 'cor-lia', 'tamanho-lia')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Conjunto Lia Supreme</h3>
+    <p class="descricao-geral">O conjunto traz a blusa de mangas 3/4 com detalhe em contraste no decote e nos punhos, acompanhada da calça pantalona de corte amplo, ideal para mulheres que prezam por elegância sem abrir mão do conforto.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Crepe Marrocain Bicolor</li>
+        <li><strong>Superiores:</strong> Mangas 3/4 com acabamento refinado e detalhe bicolor no decote e punhos</li>
+        <li><strong>Inferiores:</strong> Calça pantalona fluida de cintura alta</li>
+        <li><strong>Cores:</strong> Verde Musgo, Azul Marinho e Preto</li>
+        <li><strong>Tamanhos:</strong> G e GG</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+            <!-- Produto 15 -->
+            <article class="produto conjunto">
+                <img src="imagens/conjunto-lua.jpg" onclick="abrirModalFoto(this.src)" style="cursor: pointer;" alt="Conjunto Lua">
+                <h3>Conjunto Lua</h3>
+                <p class="preco">R$ 119,90 </p>
+                
+                <div class="seletores">
+                    <select id="cor-lua">
+                        <option value="Lua">Preto</option>
+                       
+                    </select>
+                    <select id="tamanho-lua">
+                        <option value="GG">GG</option>
+                        
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Lua', 119.90, 'cor-lua', 'tamanho-lua')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Conjunto Lua</h3>
+    <p class="descricao-geral">O conjunto é composto por blusa básica de mangas curtas e short soltinho de cintura alta com amarração, criando uma produção versatil que transita facilmente do casual ao social com os acessorios certos.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Viscolinho</li>
+        <li><strong>Superiores:</strong> Blusa de gola careca e caimento leve</li>
+        <li><strong>Inferiores:</strong> Short com cós elástico e cordão de amarração</li>
+        <li><strong>Cores:</strong> Preto</li>
+        <li><strong>Tamanhos:</strong> GG</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+
+        <!-- Produto 16 -->
+            <article class="produto conjunto">
+                <img src="imagens/conjunto-maria.jpg" onclick="abrirModalFoto(this.src)" style="cursor: pointer;" alt="Conjunto Maria">
+                <h3>Conjunto Maria</h3>
+                <p class="preco">R$ 139,90 </p>
+                
+                <div class="seletores">
+                    <select id="cor-maria">
+                        <option value="Maria">Bordô</option>
+                       
+                    </select>
+                    <select id="tamanho-maria">
+                        <option value="GG">GG</option>
+                        
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Maria', 139.90, 'cor-maria', 'tamanho-maria')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Conjunto Maria</h3>
+    <p class="descricao-geral">O conjunto apresenta blusa de caimento leve com decote sutil e saia longa em camadas (estilo marias), oferecendo movimento confortável e elegância em qualquer ocasião.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Viscose com textura</li>
+        <li><strong>Superiores:</strong> Blusa fluida com mangas curtas soltinhas</li>
+        <li><strong>Inferiores:</strong> Saia longa plissada em camadas com ótimo caimento</li>
+        <li><strong>Cores:</strong> Bordô</li>
+        <li><strong>Tamanhos:</strong> GG</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+        <!-- Produto 17 -->
+            <article class="produto conjunto">
+                <div class="carrossel-midia">
+        <img src="imagens/Conjuntonoir3.jpg" alt="Conjunto Paixão" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntonoircostas.JPG" alt="Conjunto Paixão - Costas" onclick="abrirModalFoto(this.src)">
+    </div>
+                <h3>Conjunto Noir Black</h3>
+                <p class="preco">R$ 50,00 </p>
+                
+                <div class="seletores">
+                    <select id="cor-noir">
+                        <option value="Noir">Preto</option>
+                       
+                    </select>
+                    <select id="tamanho-noir">
+                        <option value="U">Único</option>
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Noir', 50.00, 'cor-noir', 'tamanho-noir')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Conjunto Noir Black</h3>
+    <p class="descricao-geral">O conjunto apresenta top tomara que caia com nó na lateral e fenda charmosa na saia justa, valorizando as curvas com sofisticação e estilo contemporâneo.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Anarruga com Elastano</li>
+        <li><strong>Superiores:</strong> Top tomara que caia com detalhe de nó/amarração</li>
+        <li><strong>Inferiores:</strong> Saia curta ajustada ao corpo com fenda lateral</li>
+        <li><strong>Cores:</strong> Preto</li>
+        <li><strong>Tamanhos:</strong> Tamanho Único</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+
+            <!-- Produto 18 -->
+            <article class="produto">
+    <div class="carrossel-midia">
+        <img src="imagens/Conjuntopaixao3.jpg" alt="Conjunto Paixão" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntopaixaocostas.JPG" alt="Conjunto Paixão - Costas" onclick="abrirModalFoto(this.src)">
+    </div>
+                <h3>Conjunto Paixão</h3>
+                <p class="preco">R$ 30,00 </p>
+                
+                <div class="seletores">
+                    <select id="cor-paixao">
+                        <option value="Paixao">Vermelho</option>
+                       
+                    </select>
+                    <select id="tamanho-paixao">
+                        <option value="U">Único</option>
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Paixão', 30.00, 'cor-paixao', 'tamanho-paixao')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Conjunto Paixão</h3>
+    <p class="descricao-geral">O conjunto traz o top tomara que caia estampado de cores quentes em contraste com a saia curta vermelha de cintura alta, oferecendo um look leve, moderno e alegra.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Suplex (top) e Bengaline (saia)</li>
+        <li><strong>Superiores:</strong> Top tomara que caia com estampa floral</li>
+        <li><strong>Inferiores:</strong> Saia curta vermelha de cintura alta e caimente ajustado</li>
+        <li><strong>Cores:</strong> Vermelho</li>
+        <li><strong>Tamanhos:</strong> Tamanho Único</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+             <!-- Produto 19 -->
+            <article class="produto conjunto">
+                <img src="imagens/conjunto-pantalona.jpg" onclick="abrirModalFoto(this.src)" style="cursor: pointer;" alt="Conjunto Aurora">
+                <h3>Conjunto Aurora</h3>
+                <p class="preco">R$ 80,00 </p>
+                
+                <div class="seletores">
+                    <select id="cor-aurora">
+                        <option value="Pantalona">Única</option>
+                       
+                    </select>
+                    <select id="tamanho-aurora">
+                        <option value="M">M</option>
+                        <option value="G">G</option>
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Aurora', 80.00, 'cor-aurora', 'tamanho-aurora')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Conjunto Aurora</h3>
+    <p class="descricao-geral">O conjunto conta com blusa e calça pantalona de caimento fluido que garante movimento e elegância ao caminhar. Escolha ideal para quem quer se destacar com classe!</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Crepe Duna</li>
+        <li><strong>Superiores:</strong> Blusa de decote halter neck que valoriza colo</li>
+        <li><strong>Inferiores:</strong> Calça pantalona com caimento leve e confortável (possui bolsos laterais)</li>
+        <li><strong>Cores:</strong> Estampa Única</li>
+        <li><strong>Tamanhos:</strong> M e G</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+             <!-- Produto 19 -->
+            <article class="produto conjunto">
+                <img src="imagens/conjunto-brisa.jpg" onclick="abrirModalFoto(this.src)" style="cursor: pointer;" alt="Conjunto Brisa">
+                <h3>Conjunto Brisa</h3>
+                <p class="preco">R$ 80,00 </p>
+                
+                <div class="seletores">
+                    <select id="cor-brisa">
+                        <option value="Brisa">Única</option>
+                       
+                    </select>
+                    <select id="tamanho-brisa">
+                        <option value="M">M</option>
+                        <option value="G">G</option>
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Brisa', 80.00, 'cor-brisa', 'tamanho-brisa')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Conjunto Brisa</h3>
+    <p class="descricao-geral">Com uma estampa abstrata marcante em tons de azul e nude, o Conjunto Brisa combina o top estilo frente única com a calça pantalona solta.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Crepe Airflow Estampado</li>
+        <li><strong>Superiores:</strong> Blusa de decote halter neck</li>
+        <li><strong>Inferiores:</strong> Calça pantalona com caimento amplo e soltinho</li>
+        <li><strong>Cores:</strong> Estampa Única</li>
+        <li><strong>Tamanhos:</strong> M e G</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+             <!-- Produto 20 -->
+            <article class="produto conjunto">
+                <img src="imagens/conjunto-vivian.jpg" onclick="abrirModalFoto(this.src)" style="cursor: pointer;" alt="Conjunto Vivian">
+                <h3>Conjunto Vyva</h3>
+                <p class="preco">R$ 99,90 </p>
+                
+                <div class="seletores">
+                    <select id="cor-vivian">
+                        <option value="Vivian">Vermelho</option>
+                        <option value="Vivian">Preto</option>
+                        <option value="Vivian">Bege</option>
+                        <option value="Vivian">Marrom</option>
+                       
+                    </select>
+                    <select id="tamanho-vivian">
+                        <option value="M">M</option>
+                        <option value="G">G</option>
+                        <option value="GG">GG</option>
+
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Vivian', 99.90, 'cor-vivian', 'tamanho-vivian')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Conjunto Vyva</h3>
+    <p class="descricao-geral">O conjunto combina uma blusa simples de gola redonda a uma calça pantalona de cintura alta com bolsos.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Viscolinho</li>
+        <li><strong>Superiores:</strong> Blusa lisa de mangas curtas e caimento soltinho</li>
+        <li><strong>Inferiores:</strong> Calça pantalona de cintura alta com bolso lateral</li>
+        <li><strong>Cores:</strong> Vermelho, Preto, Bege e Marrom</li>
+        <li><strong>Tamanhos:</strong> M, G e GG</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+
+             <!-- Produto 21 -->
+            <article class="produto conjunto">
+                <div class="carrossel-midia">
+        <img src="imagens/Conjuntosantonori2.jpg" alt="Conjunto Santorini" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/Conjuntosantonoricostas.JPG" alt="Conjunto Santorini - Costas" onclick="abrirModalFoto(this.src)">
+    </div>
+                <h3>Conjunto Santorini</h3>
+                <p class="preco">R$ 30,00 </p>
+                
+                <div class="seletores">
+                    <select id="cor-santorini">
+                        <option value="Santorini">Branco</option>
+                       
+                    </select>
+                    <select id="tamanho-santorini">
+                        <option value="TAM">Único</option>
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Santorini', 30.00, 'cor-santorini', 'tamanho-santorini')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Conjunto Santorini</h3>
+    <p class="descricao-geral">O conjunto combina o top tomara que caia com estampa, shor saia branco de cintura alta com fenda.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Suplex (top) e Anarruga de algodão (short saia)</li>
+        <li><strong>Superiores:</strong> Top que caia estampado</li>
+        <li><strong>Inferiores:</strong> Short saia branco de cintura alta com fenda estilosa</li>
+        <li><strong>Cores:</strong> Branco</li>
+        <li><strong>Tamanhos:</strong> Tamanho Único</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+             <!-- Produto 23 -->
+           <article class="produto macacao">
+                <div class="carrossel-midia">
+        <img src="imagens/macacao-aurora.jpg" alt="Macacao Solaris" onclick="abrirModalFoto(this.src)">
+        <img src="imagens/macacao-solaris.jpg" alt="Macacao Solaris" onclick="abrirModalFoto(this.src)">
+    </div>
+                <h3>Macacão Solaris</h3>
+                <p class="preco">R$ 159,90</p>
+                
+                <div class="seletores">
+                    <select id="cor-solaris">
+                        <option value="aurora">Coral</option>
+                        <option value="helena">Amarelo Lima</option>
+                
+                    </select>
+                    <select id="tamanho-solaris">
+                        <option value="TAM">GG</option>
+                        
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Solaris', 159.90, 'cor-solaris', 'tamanho-solaris')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Macacão Solaris</h3>
+    <p class="descricao-geral">O Macacão possui decote em V, caimento amplo estilo pantalona e modelagem fluida que garante destaque absoluto.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Crepe Airflow</li>
+        <li><strong>Superiores:</strong> Decote em V com caimento acinturado</li>
+        <li><strong>Inferiores:</strong> Pernas pantalonas amplas e fluidas</li>
+        <li><strong>Cores:</strong> Coral e Amarelo lima</li>
+        <li><strong>Tamanhos:</strong> GG</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+            <!-- Produto 25 -->
+            <article class="produto macacao">
+                <img src="imagens/macaquinho-esmeralda.jpg" onclick="abrirModalFoto(this.src)" style="cursor: pointer;" alt="Conjunto Esmeralda">
+                <h3>Macacão Esmeralda</h3>
+                <p class="preco">R$ 40,00 </p>
+                
+                <div class="seletores">
+                    <select id="cor-esmeralda">
+                        <option value="Esmeralda">Bege</option>
+                        <option value="Esmeralda">Azul marinho</option>
+                        <option value="Esmeralda">Verde bandeira</option>
+                       
+                    </select>
+                    <select id="tamanho-esmeralda">
+                        <option value="TAM">Único</option>
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Macacão Esmeralda', 40.00, 'cor-esmeralda', 'tamanho-esmeralda')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Macaquinho Esmeralda</h3>
+    <p class="descricao-geral">O Macaquinho Esmeralda destaca-se por suas mangas curtas e cinto fivela para ajustar a cintura.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Alfaiataria leve</li>
+        <li><strong>Superiores:</strong> Decote em V com gola e botões frontais</li>
+        <li><strong>Inferiores:</strong> Acompanha cinto com fivela redonda para acinturar</li>
+        <li><strong>Cores:</strong> Bege, Azul Marinho e Verde Bandeira</li>
+        <li><strong>Tamanhos:</strong> Tamanho Único</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+            <!-- Essa linha refere-se a produtos iguais + cores diferentes 26 -->
+            <article class="produto calça">
+    <!-- Imagem padrão inicial -->
+    <img src="imagens/pantalona-folhagem.jpg" onclick="abrirModalFoto(this.src)" style="cursor: pointer;" alt="Conjunto Pantalona Folhagem Tropical" id="img-solare" class="foto-produto">
+    
+    <h3>Calça Pantalona Folhagem</h3>
+    <p class="preco">R$ 50,00</p>
+    
+    <div class="seletores">
+        <!-- O value aqui deve bater com o final do nome do arquivo -->
+        <select id="cor-pantalonaf" onchange="mudarFoto('img-solare', 'imagens/pantalona-'+this.value+'.jpg')">
+            <option value="folhagem">Café</option>
+            <option value="tropical">Tropical Chic</option>
+        </select>
+        
+        <select id="tamanho-pantalona">
+            <option value="M">M</option>
+        </select>
+    </div>
+    
+    <button class="btn-add" onclick="adicionarAoCarrinho('Conjunto Pantalona', 50.00, 'cor-pantalonaf', 'tamanho-pantalona')">
+        Adicionar ao Carrinho
+        <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Calça Pantalona Folhagem</h3>
+    <p class="descricao-geral">A Pantalona apresenta estampa marcante de folhas em fundo marrom e verde, perfeita para ser combinada com camisas neutras e criar um look refinado e moderno.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Viscose Estampada</li>
+        <li><strong>Detalhes:</strong> Modelagem pantalona ampla com excelente caimento, bolsos laterais funcionais e cintura alta que valoriza a silhueta</li>
+        <li><strong>Cores:</strong> Café e Tropical Chic</li>
+        <li><strong>Tamanhos:</strong> M</li>
+    </ul>
+</div>
+    </button>
+</article>
+
+
+   <!-- Produto 27 -->
+            <article class="produto conjunto">
+                <img src="imagens/trijuntopreto.jpg" onclick="abrirModalFoto(this.src)" style="cursor: pointer;" alt="Trijunto Bicolor">
+                <h3>Trijunto Bicolor</h3>
+                <p class="preco">R$ 199,90 </p>
+                
+                <div class="seletores">
+                    <select id="cor-bicolor">
+                        <option value="Bicolor">Preto</option>
+                       
+                    </select>
+                    <select id="tamanho-bicolor">
+                        <option value="GG">GG</option>
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Trijunto Bicolor', 199.90, 'cor-bicolor', 'tamanho-bicolor')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Trijunto Bicolor Mislane</h3>
+    <p class="descricao-geral">O trijunto inclui blusa interna, calça pantalona fluida e cardigan alongado com detalhes bicolores na barra e nos punhos, ideal para dias mais amenos e compromissos que exigem sofisticação.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Viscolycra</li>
+        <li><strong>Detalhes:</strong> Conjunto composto por 3 peças (regata + calça + cardigan)</li>
+        <li><strong>Cores:</strong> Preto</li>
+        <li><strong>Tamanhos:</strong> GG</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+
+            <!-- Essa linha refere-se a produtos iguais + cores diferentes 26 -->
+            <article class="produto vestido">
+    <!-- Imagem padrão inicial -->
+    <img src="imagens/brisa-azul.jpg" onclick="abrirModalFoto(this.src)" style="cursor: pointer;" alt="Vestido Brisa" id="img-brisa" class="foto-produto">
+    
+    <h3>Vestido Brisa</h3>
+    <p class="preco">R$ 129,90</p>
+    
+    <div class="seletores">
+        <!-- O value aqui deve bater com o final do nome do arquivo -->
+        <select id="cor-brisat" onchange="mudarFoto('img-brisa', this.value)">
+    <!-- Coloque o caminho completo da imagem aqui no value -->
+    <option value="imagens/brisa-azul.jpg">Brisa azul</option>
+    <option value="imagens/brisa-tropical.jpg">Brisa tropical</option>
+</select>
+        
+        <select id="tamanho-brisa">
+            <option value="TAM">GG</option>
+        </select>
+    </div>
+    
+    <button class="btn-add" onclick="adicionarAoCarrinho('Vestido Brisa', 129.90, 'cor-brisat', 'tamanho-brisa')">
+        Adicionar ao Carrinho
+        <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Conjunto Vestido Brisa</h3>
+    <p class="descricao-geral">Fluidez e encanto em uma peça rica em detalhes e leveza. Com uma estampa abstrata e harmonica em tons suaves, o vestido apresenta modelagem longa, decote frente única e tecido esvoaçante que proporciona elegância sem esforço.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Chiffon Estampado (com forro)</li>
+        <li><strong>Superiores:</strong> Decote frente única que valoriza os ombros</li>
+        <li><strong>Inferiores:</strong> Modelagem longa em camadas (acompanha forro interno)</li>
+        <li><strong>Cores:</strong> Tropical e Azul</li>
+        <li><strong>Tamanhos:</strong> GG</li>
+    </ul>
+</div>
+    </button>
+</article>
+
+    <!-- Essa linha refere-se a produtos iguais + cores diferentes 27 -->
+            <article class="produto vestido">
+    <!-- Imagem padrão inicial -->
+    <img src="imagens/vestido-classic-preto.jpg" onclick="abrirModalFoto(this.src)" style="cursor: pointer;" alt="Vestido Classic Preto" id="img-classic" class="foto-produto">
+    
+    <h3>Vestido Classic</h3>
+    <p class="preco">R$ 129,90</p>
+    
+    <div class="seletores">
+        <!-- O value aqui deve bater com o final do nome do arquivo -->
+        <select id="cor-classic" onchange="mudarFoto('img-classic', this.value)">
+    <!-- Coloque o caminho completo da imagem aqui no value -->
+    <option value="imagens/vestido-classic-preto.jpg">Classic Preto</option>
+    <option value="imagens/vestido-classico.jpg">Classic Salmão</option>
+</select>
+        
+        <select id="tamanho-classic">
+            <option value="TAM">GG</option>
+        </select>
+    </div>
+    
+    <button class="btn-add" onclick="adicionarAoCarrinho('Vestido Classic Preto', 129.90, 'cor-classic', 'tamanho-classic')">
+        Adicionar ao Carrinho
+        <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Vestido Classic</h3>
+    <p class="descricao-geral">O vestido <destaca-se> pelo design de sobreposição com gola boneca e blusa contrastante, combinando à saia midi plissada que proporciona caimento fluído e gracioso.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Malha Jacquard e Crepe Plissado</li>
+        <li><strong>Superiores:</strong> Design duplo com blusa sobreposta de gola trabalhada</li>
+        <li><strong>Inferiores:</strong> Modelagem midi com saia plissada elegante (acompanha cinto fivela)</li>
+        <li><strong>Cores:</strong> Preto e Salmão</li>
+        <li><strong>Tamanhos:</strong> GG</li>
+    </ul>
+</div>
+    </button>
+</article>
+
+
+  <!-- Produto 28 -->
+            <article class="produto vestido">
+                <img src="imagens/vestido-nude.jpg" onclick="abrirModalFoto(this.src)" style="cursor: pointer;" alt="Vestido Elegance">
+                <h3>Vestido Elegance</h3>
+                <p class="preco">R$ 139,90</p>
+                
+                <div class="seletores">
+                    <select id="cor-nude">
+                        <option value="Bege">Bege</option>
+                        <option value="Rose">Rosé</option>
+                       
+                    </select>
+                    <select id="tamanho-nude">
+                        <option value="GG">GG</option>
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Vestido Elegance', 139.90, 'cor-nude', 'tamanho-nude')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Vestido Elegance</h3>
+    <p class="descricao-geral">O vestido conta com design duplo de sobreposição, blusa clara de mangas curtas e saia midi rodada acinturada por laço.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Malha Jacquard e Crepe</li>
+        <li><strong>Superiores:</strong> Blusa de mangas curtas em contraste delicado</li>
+        <li><strong>Inferiores:</strong> Modelagem midi rodada de caimento impecável (acompanha cinto para amarração na cintura)</li>
+        <li><strong>Cores:</strong> Bege e Rosé</li>
+        <li><strong>Tamanhos:</strong> GG</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+
+              <!-- Produto 29 -->
+            <article class="produto vestido">
+                <img src="imagens/encanto-divino.jpg" onclick="abrirModalFoto(this.src)" style="cursor: pointer;" alt="Vestido Encanto Divino">
+                <h3>Vestido Encanto Divino</h3>
+                <p class="preco">R$ 159,90 </p>
+                
+                <div class="seletores">
+                    <select id="cor-divino">
+                        <option value="Marsala">Marsala</option>
+                        <option value="Preto">Preto</option>
+                        <option value="Rose">Rosé</option>
+                        <option value="Azul Marinho">Azul Marinho</option>
+                       
+                    </select>
+                    <select id="tamanho-divino">
+                        <option value="GG">GG</option>
+                        <option value="G2">G2</option>
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Vestido Encanto Divino', 159.90, 'cor-divino', 'tamanho-divino')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Vestido Encanto Divino</h3>
+    <p class="descricao-geral">O vestido traz a riqueza da renda, com gola alta, botões frontais e saia midi rodada acinturada por faixa, transmitindo nobreza e elegância.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Renda Guipir (com forro)</li>
+        <li><strong>Superiores:</strong> Gola alta com fechamento por botões frontais</li>
+        <li><strong>Inferiores:</strong> Comprimento midi rodado com caimento fluido</li>
+        <li><strong>Cores:</strong> Marsala, Preto, Azul Marinho e Rosé</li>
+        <li><strong>Tamanhos:</strong> GG e G2</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+            <!-- Produto 30 -->
+            <article class="produto vestido">
+                <img src="imagens/vestido-imperatriz.jpg" onclick="abrirModalFoto(this.src)" style="cursor: pointer;" alt="Vestido Imperatriz">
+                <h3>Vestido Imperatriz</h3>
+                <p class="preco">R$ 129,90</p>
+                
+                <div class="seletores">
+                    <select id="cor-imperatriz">
+                        <option value="Marsala">Marsala</option>
+                       
+                    </select>
+                    <select id="tamanho-imperatriz">
+                        <option value="GG">GG</option>
+                    </select>
+                </div>
+                
+                <button class="btn-add" onclick="adicionarAoCarrinho('Vestido Imperatriz', 120.90, 'cor-imperatriz', 'tamanho-imperatriz')">
+                    Adicionar ao Carrinho
+                    <!-- Botão de ver detalhes -->
+<button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
+
+<!-- Descrição organizada que o JavaScript vai ler automaticamente -->
+<div class="texto-detalhes-oculto" style="display: none;">
+    <h3>Vestido Imperatriz</h3>
+    <p class="descricao-geral">O vestido no tom marsala traz mangas curtas e esvoaçantes, decote quadrado e saia midi rodada em tecido leve e com caimento impecável.</p>
+    <ul class="detalhes-topicos">
+        <li><strong>Tecido:</strong> Tule Trabalhado/Chiffon (com forro)</li>
+        <li><strong>Detalhes:</strong> Decote quadrado que valoriza o colo</li>
+        <li><strong>Cores:</strong> Marsala</li>
+        <li><strong>Tamanhos:</strong> GG</li>
+    </ul>
+</div>
+                </button>
+            </article>
+
+
+        </main>
+
+        <!-- COLUNA 2: CARRINHO E CHECKOUT (O que você perguntou) -->
+        <aside class="coluna-carrinho">
+            <div class="carrinho-area">
+                <h2>Seu Carrinho</h2>
+                
+                <!-- Esta div começa vazia, o JavaScript vai preencher ela -->
+                <div id="itens-do-carrinho">
+                    <p style="color: #888; font-size: 14px;">Seu carrinho está vazio.</p>
+                </div>
+
+                <div class="total-area">
+                    Total: R$ <span id="valor-total-tela">0,00</span>
+                </div>
+
+                <!-- Formulário final da cliente -->
+                <div class="formulario-checkout">
+                    <label>Nome Completo:</label>
+                    <input type="text" id="cliente-nome" placeholder="Ex: Yasmin Vitória">
+                    
+                    <label>WhatsApp:</label>
+                    <input type="text" id="cliente-zap" placeholder="(71) 90000-0000">
+                    
+                    <label>Endereço de Entrega:</label>
+                    <input type="text" id="cliente-endereco" placeholder="Rua, Número - Bairro - Salvador/BA">
+                    
+                    <label>Forma de Pagamento:</label>
+                    <select id="forma-pagamento">
+                        <option value="PIX">PIX</option>
+                        <option value="Dinheiro">Dinheiro (Espécie)</option>
+                        <option value="Cartão">Cartão (Débito/Crédito)</option>
+</select>
+
+                    <button class="btn-finalizar" onclick="enviarParaWhatsApp()">Finalizar no WhatsApp</button>
+                </div>
+            </div>
+        </aside>
+
+    </div>
+    <div class="contatos">
+    <a href="https://wa.me/5571983154640" target="_blank" class="icone-zap">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://www.instagram.com/vyvamodafeminina" target="_blank" class="icone-insta">
+        <i class="fab fa-instagram"></i>
+    </a>
+</div>
+
+    <!-- Aqui conectamos a inteligência do carrinho (JavaScript) -->
+    <script src="script.js"></script>
+    
+    <!-- O BOTÃO FLUTUANTE FICA AQUI, LOGO ANTES DE FECHAR O BODY -->
+    <div id="btn-flutuante-carrinho" onclick="abrirCarrinhoMobile()" style="display: none; position: fixed; bottom: 20px; right: 20px; background: #D4AF37; color: #000; padding: 15px; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+    🛒 <span id="qtd-itens">0</span> itens - R$ <span id="valor-total">0,00</span>
+</div>
+<!-- Modal de Detalhes -->
+<div id="modal-detalhes" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999;">
+    <div style="background:white; margin:15% auto; padding:20px; width:85%; max-width:400px; border-radius:10px; text-align:center; position:relative;">
+        <h2 id="modal-titulo" style="color:#D4AF37; margin-top:0;"></h2>
+        <p id="modal-info" style="margin:20px 0; color:#333; line-height:1.5;"></p>
+        <button onclick="fecharModal()" style="background:#D4AF37; border:none; padding:10px 25px; cursor:pointer; font-weight:bold; border-radius:5px;">Fechar</button>
+    </div>
+</div>
+<!-- Modal de Detalhes -->
+    <div id="modal-detalhes" ...>
+        ...
+    </div>
+
+    <!-- Janela Flutuante (Modal) de Medidas -->
+    <div id="modal-guia-medidas" class="modal-guia">
+        <div class="modal-guia-conteudo">
+            <span class="fechar-guia" onclick="fecharGuiaMedidas()">&times;</span>
+            <h3>Guia de Tamanhos</h3>
+            <ul class="lista-medidas">
+                <li><strong>Tamanho Único:</strong> Veste 38 a 42</li>
+                <li><strong>G:</strong> Veste 42 a 44</li>
+                <li><strong>GG:</strong> Veste 44 a 46</li>
+                <li><strong>G1:</strong> Veste 46 a 48</li>
+                <li><strong>G2:</strong> Veste 50 a 52</li>
+            </ul>
+            <p class="dica-guia">💡 *Peças com elastano possuem excelente adaptação.*</p>
+        </div>
+    </div>
+</body>
+</html>
