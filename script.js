@@ -1,6 +1,74 @@
 // 1. Abertura do evento que espera o site carregar
 document.addEventListener("DOMContentLoaded", function() {
 
+    requestAnimationFrame(() => document.body.classList.add('site-pronto'));
+
+    const botaoVoltarAoTopo = document.getElementById('voltar-ao-topo');
+    const atualizarBotaoTopo = () => {
+        botaoVoltarAoTopo?.classList.toggle('visivel', window.scrollY > 700);
+    };
+
+    window.addEventListener('scroll', atualizarBotaoTopo, { passive: true });
+    botaoVoltarAoTopo?.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    atualizarBotaoTopo();
+
+    // Melhora o carregamento e a acessibilidade do catálogo.
+    document.querySelectorAll('.produto img').forEach((imagem) => {
+        imagem.loading = 'lazy';
+        imagem.decoding = 'async';
+        imagem.setAttribute('role', 'button');
+        imagem.tabIndex = 0;
+        imagem.setAttribute('aria-label', `Ampliar foto de ${imagem.alt || 'produto'}`);
+        imagem.addEventListener('keydown', (evento) => {
+            if (evento.key === 'Enter' || evento.key === ' ') {
+                evento.preventDefault();
+                imagem.click();
+            }
+        });
+    });
+
+    document.querySelectorAll('.produto').forEach((produto) => {
+        const nome = produto.querySelector('h3')?.textContent.trim() || 'produto';
+        produto.dataset.nome = nome;
+        produto.querySelectorAll('select').forEach((seletor, indice) => {
+            if (!seletor.getAttribute('aria-label')) {
+                seletor.setAttribute('aria-label', `${indice === 0 ? 'Cor' : 'Tamanho'} de ${nome}`);
+            }
+        });
+    });
+
+    const estadoCatalogo = {
+        categoria: 'produto',
+        busca: '',
+        ordenacao: 'original',
+        pagina: 1,
+        itensPorPagina: 12
+    };
+
+    const produtosCatalogo = Array.from(document.querySelectorAll('.produto'));
+    produtosCatalogo.forEach((produto, indice) => {
+        produto.dataset.ordemOriginal = indice;
+        produto.classList.add('revelar-produto');
+    });
+
+    const observadorProdutos = 'IntersectionObserver' in window
+        ? new IntersectionObserver((entradas, observador) => {
+            entradas.forEach((entrada) => {
+                if (entrada.isIntersecting) {
+                    entrada.target.classList.add('produto-visivel');
+                    observador.unobserve(entrada.target);
+                }
+            });
+        }, { rootMargin: '80px 0px', threshold: 0.08 })
+        : null;
+
+    produtosCatalogo.forEach((produto) => {
+        if (observadorProdutos) observadorProdutos.observe(produto);
+        else produto.classList.add('produto-visivel');
+    });
+
     // 2. A Memória do Carrinho (com localStorage)
     let carrinho = JSON.parse(localStorage.getItem('carrinho_vyva')) || [];
 
@@ -44,6 +112,25 @@ document.addEventListener("DOMContentLoaded", function() {
         salvarCarrinho();
         atualizarTelaDoCarrinho();
         atualizarBotaoFlutuante();
+
+        const botaoAdicionar = document.activeElement?.classList.contains('btn-add')
+            ? document.activeElement
+            : null;
+        if (botaoAdicionar) {
+            const textoOriginal = botaoAdicionar.textContent.trim();
+            botaoAdicionar.textContent = 'Adicionado ✓';
+            botaoAdicionar.classList.add('item-adicionado');
+            window.setTimeout(() => {
+                botaoAdicionar.textContent = textoOriginal;
+                botaoAdicionar.classList.remove('item-adicionado');
+            }, 1200);
+        }
+
+        const carrinhoFlutuante = document.getElementById('btn-flutuante-carrinho');
+        if (carrinhoFlutuante) {
+            carrinhoFlutuante.classList.remove('carrinho-pulsar');
+            requestAnimationFrame(() => carrinhoFlutuante.classList.add('carrinho-pulsar'));
+        }
     };
 
     window.removerDoCarrinho = function(index) {
@@ -67,6 +154,17 @@ document.addEventListener("DOMContentLoaded", function() {
         const zap = document.getElementById('cliente-zap').value;
         const endereco = document.getElementById('cliente-endereco').value;
         const pagamento = document.getElementById('forma-pagamento').value;
+
+        if (!nome.trim() || !zap.trim() || !endereco.trim()) {
+            alert('Preencha nome, WhatsApp e endereço para finalizar o pedido.');
+            const primeiroVazio = [
+                document.getElementById('cliente-nome'),
+                document.getElementById('cliente-zap'),
+                document.getElementById('cliente-endereco')
+            ].find(campo => !campo.value.trim());
+            primeiroVazio?.focus();
+            return;
+        }
 
         let textoItens = "";
         let valorTotal = 0;
@@ -100,7 +198,7 @@ document.addEventListener("DOMContentLoaded", function() {
             `Chave: 71999924448\n` +
             `Recebedor: Yasmin Vitória Oliveira Carvalho`;
 
-        const numeroLojista = "557183154640"; 
+        const numeroLojista = "5571983154640";
         const urlWhatsApp = `https://wa.me/${numeroLojista}?text=${encodeURIComponent(mensagem)}`;
         window.open(urlWhatsApp, '_blank');
     };
@@ -124,7 +222,7 @@ document.addEventListener("DOMContentLoaded", function() {
         carrinho.forEach((peca, index) => {
             const bloquinhoDoItem = `
                 <div style="border-bottom: 1px dashed #D4AF37; margin-bottom: 10px; padding-bottom: 10px; position: relative;">
-                    <button onclick="removerDoCarrinho(${index})" style="position: absolute; right: 0; top: 0; background: none; border: none; color: #ff4c4c; font-size: 16px; font-weight: bold; cursor: pointer; padding: 0; width: auto; box-shadow: none;">X</button>
+                    <button onclick="removerDoCarrinho(${index})" aria-label="Remover ${peca.nomeItem} do carrinho" style="position: absolute; right: 0; top: 0; background: none; border: none; color: #ff4c4c; font-size: 16px; font-weight: bold; cursor: pointer; padding: 0; width: auto; box-shadow: none;">X</button>
                     <p style="margin: 0; font-weight: bold; color: #D4AF37;">1x ${peca.nomeItem}</p>
                     <p style="margin: 0; font-size: 12px; color: #b08d28;">Cor: ${peca.cor} | Tamanho: ${peca.tamanho}</p>
                     <p style="margin: 0; color: #f2ce63;">R$ ${peca.valor.toFixed(2).replace('.', ',')}</p>
@@ -148,22 +246,134 @@ document.addEventListener("DOMContentLoaded", function() {
         divItens.innerHTML += `<p style="margin-top: 15px; font-size: 14px; color: #b08d28; font-weight: bold;">💳 ${textoParcelamento}</p>`;
     }
 
-    // 5. Função de Filtrar Produtos
-    window.filtrarProdutos = function(categoria) {
-        const produtos = document.querySelectorAll('.produto');
-        
-        produtos.forEach(produto => {
-            if (categoria === 'produto') {
-                produto.style.display = ''; 
-            } else {
-                if (produto.classList.contains(categoria)) {
-                    produto.style.display = '';
-                } else {
-                    produto.style.display = 'none';
-                }
-            }
-        });
+    // 5. Busca, filtros e ordenação do catálogo
+    const normalizarTexto = (texto) => texto
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .trim();
+
+    const obterPreco = (produto) => {
+        const texto = produto.querySelector('.preco')?.textContent || '0';
+        return Number(texto.replace(/[^\d,]/g, '').replace(',', '.')) || 0;
     };
+
+    function renderizarPaginacao(totalPaginas) {
+        const paginacao = document.getElementById('paginacao-produtos');
+        if (!paginacao) return;
+
+        if (totalPaginas <= 1) {
+            paginacao.innerHTML = '';
+            paginacao.hidden = true;
+            return;
+        }
+
+        paginacao.hidden = false;
+        const botoesNumericos = Array.from({ length: totalPaginas }, (_, indice) => {
+            const pagina = indice + 1;
+            const atual = pagina === estadoCatalogo.pagina;
+            return `<button type="button" class="pagina-botao${atual ? ' atual' : ''}" data-pagina="${pagina}" ${atual ? 'aria-current="page"' : ''} aria-label="Ir para a página ${pagina}">${pagina}</button>`;
+        }).join('');
+
+        paginacao.innerHTML = `
+            <button type="button" class="pagina-botao pagina-seta" data-pagina="${estadoCatalogo.pagina - 1}" aria-label="Página anterior" ${estadoCatalogo.pagina === 1 ? 'disabled' : ''}>
+                <i class="fas fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            ${botoesNumericos}
+            <button type="button" class="pagina-botao pagina-seta" data-pagina="${estadoCatalogo.pagina + 1}" aria-label="Próxima página" ${estadoCatalogo.pagina === totalPaginas ? 'disabled' : ''}>
+                <i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </button>
+        `;
+
+        paginacao.querySelectorAll('.pagina-botao:not(:disabled)').forEach((botao) => {
+            botao.addEventListener('click', () => {
+                estadoCatalogo.pagina = Number(botao.dataset.pagina);
+                aplicarFiltrosCatalogo();
+                document.getElementById('catalogo')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    }
+
+    function aplicarFiltrosCatalogo() {
+        const coluna = document.querySelector('.coluna-produtos');
+        const termo = normalizarTexto(estadoCatalogo.busca);
+
+        const ordenados = [...produtosCatalogo].sort((a, b) => {
+            const diferencaEstoque = Number(a.classList.contains('esgotado')) - Number(b.classList.contains('esgotado'));
+            if (diferencaEstoque !== 0) return diferencaEstoque;
+            if (estadoCatalogo.ordenacao === 'menor-preco') return obterPreco(a) - obterPreco(b);
+            if (estadoCatalogo.ordenacao === 'maior-preco') return obterPreco(b) - obterPreco(a);
+            if (estadoCatalogo.ordenacao === 'nome') {
+                return a.dataset.nome.localeCompare(b.dataset.nome, 'pt-BR');
+            }
+            return Number(a.dataset.ordemOriginal) - Number(b.dataset.ordemOriginal);
+        });
+
+        const correspondentes = ordenados.filter((produto) => {
+            const correspondeCategoria = estadoCatalogo.categoria === 'produto' || produto.classList.contains(estadoCatalogo.categoria);
+            const correspondeBusca = !termo || normalizarTexto(produto.textContent).includes(termo);
+            return correspondeCategoria && correspondeBusca;
+        });
+
+        const totalPaginas = Math.max(1, Math.ceil(correspondentes.length / estadoCatalogo.itensPorPagina));
+        estadoCatalogo.pagina = Math.min(Math.max(1, estadoCatalogo.pagina), totalPaginas);
+        const inicio = (estadoCatalogo.pagina - 1) * estadoCatalogo.itensPorPagina;
+        const produtosDaPagina = new Set(correspondentes.slice(inicio, inicio + estadoCatalogo.itensPorPagina));
+        const paginacao = document.getElementById('paginacao-produtos');
+
+        ordenados.forEach((produto) => {
+            const visivel = produtosDaPagina.has(produto);
+            produto.hidden = !visivel;
+            produto.style.display = visivel ? '' : 'none';
+            if (visivel) {
+                produto.classList.remove('filtro-entrada');
+                requestAnimationFrame(() => produto.classList.add('filtro-entrada'));
+            }
+            coluna.insertBefore(produto, paginacao);
+        });
+
+        renderizarPaginacao(correspondentes.length ? totalPaginas : 0);
+
+        document.querySelectorAll('.chip-filtro[data-categoria]').forEach((botao) => {
+            const ativo = botao.dataset.categoria === estadoCatalogo.categoria;
+            botao.classList.toggle('ativo', ativo);
+            botao.setAttribute('aria-pressed', String(ativo));
+        });
+
+        const resultado = document.getElementById('resultado-produtos');
+        if (resultado) {
+            const quantidade = correspondentes.length;
+            const textoQuantidade = quantidade === 1 ? '1 peça encontrada' : `${quantidade} peças encontradas`;
+            resultado.textContent = quantidade && totalPaginas > 1
+                ? `${textoQuantidade} • Página ${estadoCatalogo.pagina} de ${totalPaginas}`
+                : textoQuantidade;
+        }
+    }
+
+    window.filtrarProdutos = function(categoria) {
+        estadoCatalogo.categoria = categoria;
+        estadoCatalogo.pagina = 1;
+        aplicarFiltrosCatalogo();
+        document.getElementById('catalogo')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    document.querySelectorAll('.chip-filtro[data-categoria]').forEach((botao) => {
+        botao.addEventListener('click', () => window.filtrarProdutos(botao.dataset.categoria));
+    });
+
+    document.getElementById('busca-produtos')?.addEventListener('input', (evento) => {
+        estadoCatalogo.busca = evento.target.value;
+        estadoCatalogo.pagina = 1;
+        aplicarFiltrosCatalogo();
+    });
+
+    document.getElementById('ordenar-produtos')?.addEventListener('change', (evento) => {
+        estadoCatalogo.ordenacao = evento.target.value;
+        estadoCatalogo.pagina = 1;
+        aplicarFiltrosCatalogo();
+    });
+
+    aplicarFiltrosCatalogo();
 
     // Função para levar o cliente até a área do carrinho
     window.abrirCarrinhoMobile = function() {
@@ -193,8 +403,8 @@ document.addEventListener("DOMContentLoaded", function() {
         
         // Restaura a estrutura original caso tenha sido alterada por um vídeo antes
         modalContent.innerHTML = `
-            <span onclick="fecharModalFoto()" style="position: absolute; top: -40px; right: 0; color: #fff; font-size: 30px; font-weight: bold; cursor: pointer;">&times;</span>
-            <img id="img-modal-zoom" src="${caminhoImagem}" style="width: 100%; max-height: 80vh; border-radius: 8px; border: 2px solid #D4AF37;">
+            <button type="button" onclick="fecharModalFoto()" aria-label="Fechar imagem ampliada" style="position: absolute; top: -46px; right: 0; color: #fff; background: transparent; font-size: 30px; cursor: pointer; width:44px; padding:0;">&times;</button>
+            <img id="img-modal-zoom" src="${caminhoImagem}" alt="Imagem ampliada do produto" style="width: 100%; max-height: 80vh; border-radius: 8px; border: 2px solid #D4AF37;">
         `;
         
         modal.style.display = 'flex';
@@ -216,19 +426,6 @@ document.addEventListener("DOMContentLoaded", function() {
             window.fecharModalFoto();
         }
     });
-
-    // --- ORGANIZAR PRODUTOS ESGOTADOS PARA O FINAL ---
-    const colunaProdutos = document.querySelector('.coluna-produtos');
-    if (colunaProdutos) {
-        const produtos = Array.from(colunaProdutos.querySelectorAll('.produto'));
-        
-        const disponiveis = produtos.filter(p => !p.classList.contains('esgotado'));
-        const esgotados = produtos.filter(p => p.classList.contains('esgotado'));
-        
-        colunaProdutos.innerHTML = '';
-        disponiveis.forEach(p => colunaProdutos.appendChild(p));
-        esgotados.forEach(p => colunaProdutos.appendChild(p));
-    }
 
     // Chamada inicial para carregar o localStorage salvo na tela
     atualizarTelaDoCarrinho();
@@ -276,6 +473,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const menu = document.getElementById('menu-lateral');
         if (menu) {
             menu.style.display = 'flex';
+            document.querySelector('.btn-hamburguer')?.setAttribute('aria-expanded', 'true');
         }
     };
 
@@ -283,6 +481,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const menu = document.getElementById('menu-lateral');
         if (menu) {
             menu.style.display = 'none';
+            document.querySelector('.btn-hamburguer')?.setAttribute('aria-expanded', 'false');
         }
     };
 
@@ -291,6 +490,15 @@ document.addEventListener("DOMContentLoaded", function() {
         const menu = document.getElementById('menu-lateral');
         if (event.target === menu) {
             menu.style.display = 'none';
+        }
+    });
+
+    window.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            window.fecharModalFoto();
+            window.fecharModal();
+            window.fecharGuiaMedidas();
+            window.fecharMenuLateral();
         }
     });
 

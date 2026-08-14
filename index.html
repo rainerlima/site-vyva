@@ -3,14 +3,42 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta property="og:title" content="Vyva Moda" />
+<meta property="og:title" content="Vyva Moda" />
 <meta property="og:description" content="Confira as novidades e ofertas da Vyva Moda." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:site_name" content="VyVA Moda" />
 <!-- Substitua 'logo.png' pelo nome exato do seu arquivo de imagem -->
-<meta property="og:image" content="https://vyvamoda.com.br/logo-zap" />
+<meta property="og:image" content="https://vyvamoda.com.br/imagens/logo-zap.jpg" />
 <meta property="og:url" content="https://vyvamoda.com.br" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="VyVA Moda — Elegância que Veste">
+<meta name="twitter:description" content="Conheça conjuntos, vestidos, macacões e novidades da VyVA Moda.">
+<meta name="twitter:image" content="https://vyvamoda.com.br/imagens/logo-zap.jpg">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Moda feminina elegante para todos os momentos. Conheça os conjuntos, vestidos, macacões e novidades da VyVA Moda.">
+    <meta name="theme-color" content="#050505">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://vyvamoda.com.br/">
     <title>VYVA MODA - Elegância que Veste</title>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ClothingStore",
+      "name": "VyVA Moda",
+      "url": "https://vyvamoda.com.br/",
+      "logo": "https://vyvamoda.com.br/imagens/vyva-logo.jpg",
+      "description": "Moda feminina elegante: conjuntos, vestidos, macacões e alfaiataria.",
+      "sameAs": ["https://www.instagram.com/vyvamodafeminina"],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+55 71 98315-4640",
+        "contactType": "sales",
+        "availableLanguage": "Portuguese"
+      }
+    }
+    </script>
 
     <!-- Adicione a linha do Font Awesome aqui: -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -19,19 +47,20 @@
     <link rel="icon" type="image/png" href="imagens/logo-pequena.png.png">
 
     <!-- Aqui conectamos o visual (CSS) que faremos depois -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=12">
 
     <!-- O 'defer' garante que o script só rode após o HTML ser lido -->
-    <script src="script.js" defer></script>
+    <script src="script.js?v=8" defer></script>
 
 </head>
 
 <body>
+    <a class="skip-link" href="#catalogo">Pular para os produtos</a>
     <!-- Modal de Zoom da Foto -->
 <div id="modal-foto" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center;">
     <div style="position: relative; max-width: 90%; max-height: 90%;">
-        <span onclick="fecharModalFoto()" style="position: absolute; top: -40px; right: 0; color: #fff; font-size: 30px; font-weight: bold; cursor: pointer;">&times;</span>
-        <img id="img-modal-zoom" src="" style="width: 100%; max-height: 80vh; border-radius: 8px; border: 2px solid #D4AF37;">
+        <button type="button" onclick="fecharModalFoto()" aria-label="Fechar imagem ampliada" style="position: absolute; top: -46px; right: 0; color: #fff; background: transparent; font-size: 30px; cursor: pointer; width:44px; padding:0;">&times;</button>
+        <img id="img-modal-zoom" src="" alt="Imagem ampliada do produto" style="width: 100%; max-height: 80vh; border-radius: 8px; border: 2px solid #D4AF37;">
     </div>
 </div>
 
@@ -42,36 +71,51 @@
         <h1>VyVA MODA</h1>
         <p class="subtitle">Elegância que Veste • Atitude que Marca</p>
 
-        <!-- Botão do Menu Hambúrguer (Três Linhas) -->
-    <div class="menu-topo">
-        <button class="btn-hamburguer" onclick="abrirMenuLateral()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </div>
-
-    <!-- Menu Lateral Deslizante (Gaveta) -->
-    <div id="menu-lateral" class="menu-lateral">
-        <div class="menu-lateral-conteudo">
-            <span class="fechar-menu" onclick="fecharMenuLateral()">&times;</span>
-            <h3> VyVA MODA</h3>
-            
-            <div class="filtros-lateral">
-                <button onclick="filtrarProdutos('alfaiataria'); fecharMenuLateral();">Alfaiataria</button>
-                <button onclick="filtrarProdutos('conjunto'); fecharMenuLateral();">Conjuntos</button>
-                <button onclick="filtrarProdutos('macacao'); fecharMenuLateral();">Macacão</button>
-                <button onclick="filtrarProdutos('vestido'); fecharMenuLateral();">Vestidos</button>
-                <button onclick="filtrarProdutos('produto'); fecharMenuLateral();">Todos</button>
-                <button onclick="abrirGuiaMedidas(); fecharMenuLateral();" class="btn-medidas-menu">📏 Medidas</button>
-            </div>
-        </div>
-    </div>
-
     </header>
 
+    <section class="catalogo-intro" aria-labelledby="titulo-catalogo">
+        <p class="catalogo-eyebrow">Coleção VyVA</p>
+        <h2 id="titulo-catalogo">Encontre a peça que combina com você</h2>
+        <p>Explore os nossos looks e finalize seu pedido diretamente pelo WhatsApp.</p>
+
+        <div class="catalogo-controles" role="search" aria-label="Buscar e filtrar produtos">
+            <label class="campo-busca" for="busca-produtos">
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <span class="sr-only">Buscar produtos</span>
+                <input type="search" id="busca-produtos" placeholder="Busque por nome, cor ou categoria" autocomplete="off">
+            </label>
+
+            <label class="campo-ordenacao" for="ordenar-produtos">
+                <i class="fas fa-arrow-down-wide-short" aria-hidden="true"></i>
+                <span class="sr-only">Ordenar produtos</span>
+                <select id="ordenar-produtos">
+                    <option value="original">Destaques</option>
+                    <option value="menor-preco">Menor preço</option>
+                    <option value="maior-preco">Maior preço</option>
+                    <option value="nome">Nome A–Z</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="chips-filtros" aria-label="Categorias de produtos">
+            <button type="button" class="chip-filtro ativo" data-categoria="produto" aria-pressed="true">Todos</button>
+            <button type="button" class="chip-filtro" data-categoria="alfaiataria" aria-pressed="false">Alfaiataria</button>
+            <button type="button" class="chip-filtro" data-categoria="conjunto" aria-pressed="false">Conjuntos</button>
+            <button type="button" class="chip-filtro" data-categoria="macacao" aria-pressed="false">Macacões</button>
+            <button type="button" class="chip-filtro" data-categoria="vestido" aria-pressed="false">Vestidos</button>
+            <button type="button" class="chip-filtro chip-sobre" onclick="document.getElementById('sobre-nos').scrollIntoView({ behavior: 'smooth' })">
+                <i class="fas fa-circle-info" aria-hidden="true"></i> Sobre nós
+            </button>
+            <button type="button" class="chip-filtro chip-medidas" onclick="abrirGuiaMedidas()" aria-haspopup="dialog">
+                <i class="fas fa-ruler-combined" aria-hidden="true"></i> Guia de medidas
+            </button>
+        </div>
+
+        <p id="resultado-produtos" class="resultado-produtos" aria-live="polite"></p>
+    </section>
+
     <!-- ÁREA PRINCIPAL QUE DIVIDE PRODUTOS E CARRINHO -->
-    <div class="layout-principal">
+    <div class="layout-principal" id="catalogo">
         
         <!-- COLUNA 1: VITRINE DE PRODUTOS -->
         <main class="coluna-produtos">
@@ -323,7 +367,7 @@
             <option value="VerdeMilitar">Verde Militar</option>
         </select>
         
-        <select id="tamanho-coleteoliveira">
+        <select id="tamanho-caprioliva">
             <option value="M">M</option>
             <option value="G">G</option>
         </select>
@@ -1597,12 +1641,12 @@
     <option value="imagens/brisa-tropical.jpg">Brisa tropical</option>
 </select>
         
-        <select id="tamanho-brisa">
+        <select id="tamanho-vestido-brisa">
             <option value="TAM">GG</option>
         </select>
     </div>
     
-    <button class="btn-add" onclick="adicionarAoCarrinho('Vestido Brisa', 129.90, 'cor-brisat', 'tamanho-brisa')">
+    <button class="btn-add" onclick="adicionarAoCarrinho('Vestido Brisa', 129.90, 'cor-brisat', 'tamanho-vestido-brisa')">
         Adicionar ao Carrinho
         <!-- Botão de ver detalhes -->
 <button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
@@ -1760,7 +1804,8 @@
                 
                 <button class="btn-add" onclick="adicionarAoCarrinho('Vestido Imperatriz', 120.90, 'cor-imperatriz', 'tamanho-imperatriz')">
                     Adicionar ao Carrinho
-                    <!-- Botão de ver detalhes -->
+                </button>
+<!-- Botão de ver detalhes -->
 <button class="btn-detalhes" onclick="abrirDetalhesDoElemento(this)">Ver detalhes</button>
 
 <!-- Descrição organizada que o JavaScript vai ler automaticamente -->
@@ -1774,10 +1819,9 @@
         <li><strong>Tamanhos:</strong> GG</li>
     </ul>
 </div>
-                </button>
             </article>
 
-
+            <nav id="paginacao-produtos" class="paginacao-produtos" aria-label="Páginas de produtos"></nav>
         </main>
 
         <!-- COLUNA 2: CARRINHO E CHECKOUT (O que você perguntou) -->
@@ -1786,7 +1830,7 @@
                 <h2>Seu Carrinho</h2>
                 
                 <!-- Esta div começa vazia, o JavaScript vai preencher ela -->
-                <div id="itens-do-carrinho">
+                <div id="itens-do-carrinho" aria-live="polite">
                     <p style="color: #888; font-size: 14px;">Seu carrinho está vazio.</p>
                 </div>
 
@@ -1796,16 +1840,16 @@
 
                 <!-- Formulário final da cliente -->
                 <div class="formulario-checkout">
-                    <label>Nome Completo:</label>
-                    <input type="text" id="cliente-nome" placeholder="Ex: Yasmin Vitória">
+                    <label for="cliente-nome">Nome Completo:</label>
+                    <input type="text" id="cliente-nome" placeholder="Ex: Yasmin Vitória" autocomplete="name" required>
                     
-                    <label>WhatsApp:</label>
-                    <input type="text" id="cliente-zap" placeholder="(71) 90000-0000">
+                    <label for="cliente-zap">WhatsApp:</label>
+                    <input type="tel" id="cliente-zap" placeholder="(71) 90000-0000" autocomplete="tel" inputmode="tel" required>
                     
-                    <label>Endereço de Entrega:</label>
-                    <input type="text" id="cliente-endereco" placeholder="Rua, Número - Bairro - Salvador/BA">
+                    <label for="cliente-endereco">Endereço de Entrega:</label>
+                    <input type="text" id="cliente-endereco" placeholder="Rua, Número - Bairro - Salvador/BA" autocomplete="street-address" required>
                     
-                    <label>Forma de Pagamento:</label>
+                    <label for="forma-pagamento">Forma de Pagamento:</label>
                     <select id="forma-pagamento">
                         <option value="PIX">PIX</option>
                         <option value="Dinheiro">Dinheiro (Espécie)</option>
@@ -1818,40 +1862,70 @@
         </aside>
 
     </div>
+
+    <section class="sobre-nos" id="sobre-nos" aria-labelledby="titulo-sobre-nos">
+        <div class="sobre-nos-marca" aria-hidden="true">
+            <img src="imagens/vyva-logo.jpg" alt="" loading="lazy" decoding="async">
+            <span>VyVA</span>
+        </div>
+
+        <div class="sobre-nos-conteudo">
+            <p class="catalogo-eyebrow">Sobre nós</p>
+            <h2 id="titulo-sobre-nos">Moda para vestir sua presença</h2>
+            <p>Na VyVA Moda, cada peça é escolhida para valorizar sua personalidade e acompanhar os momentos em que você deseja se sentir confiante, elegante e autêntica.</p>
+            <p>Nossa vitrine reúne modelos versáteis, do casual ao sofisticado, com atendimento próximo e uma experiência de compra simples pelo WhatsApp.</p>
+
+            <div class="sobre-nos-valores">
+                <div>
+                    <i class="fas fa-gem" aria-hidden="true"></i>
+                    <strong>Seleção</strong>
+                    <span>Peças pensadas para diferentes estilos e ocasiões.</span>
+                </div>
+                <div>
+                    <i class="fas fa-comments" aria-hidden="true"></i>
+                    <strong>Atendimento próximo</strong>
+                    <span>Conversa direta para ajudar em cada escolha.</span>
+                </div>
+                <div>
+                    <i class="fas fa-heart" aria-hidden="true"></i>
+                    <strong>Autenticidade</strong>
+                    <span>Moda que acompanha sua atitude e sua identidade.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <div class="contatos">
-    <a href="https://wa.me/5571983154640" target="_blank" class="icone-zap">
+    <a href="https://wa.me/5571983154640" target="_blank" rel="noopener" class="icone-zap" aria-label="Falar com a VyVA Moda no WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
-    <a href="https://www.instagram.com/vyvamodafeminina" target="_blank" class="icone-insta">
+    <a href="https://www.instagram.com/vyvamodafeminina" target="_blank" rel="noopener" class="icone-insta" aria-label="Visitar o Instagram da VyVA Moda">
         <i class="fab fa-instagram"></i>
     </a>
 </div>
 
     <!-- Aqui conectamos a inteligência do carrinho (JavaScript) -->
-    <script src="script.js"></script>
+    <button type="button" id="voltar-ao-topo" aria-label="Voltar ao topo da página" title="Voltar ao topo">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
     
     <!-- O BOTÃO FLUTUANTE FICA AQUI, LOGO ANTES DE FECHAR O BODY -->
-    <div id="btn-flutuante-carrinho" onclick="abrirCarrinhoMobile()" style="display: none; position: fixed; bottom: 20px; right: 20px; background: #D4AF37; color: #000; padding: 15px; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+    <button type="button" id="btn-flutuante-carrinho" onclick="abrirCarrinhoMobile()" aria-label="Abrir carrinho" style="display: none; position: fixed; bottom: 20px; right: 20px; background: #D4AF37; color: #000; padding: 15px; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.2); width:auto;">
     🛒 <span id="qtd-itens">0</span> itens - R$ <span id="valor-total">0,00</span>
-</div>
+</button>
 <!-- Modal de Detalhes -->
-<div id="modal-detalhes" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999;">
-    <div style="background:white; margin:15% auto; padding:20px; width:85%; max-width:400px; border-radius:10px; text-align:center; position:relative;">
+<div id="modal-detalhes" role="dialog" aria-modal="true" aria-label="Detalhes do produto" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999;">
+    <div class="modal-detalhes-conteudo">
         <h2 id="modal-titulo" style="color:#D4AF37; margin-top:0;"></h2>
-        <p id="modal-info" style="margin:20px 0; color:#333; line-height:1.5;"></p>
+        <div id="modal-info"></div>
         <button onclick="fecharModal()" style="background:#D4AF37; border:none; padding:10px 25px; cursor:pointer; font-weight:bold; border-radius:5px;">Fechar</button>
     </div>
 </div>
-<!-- Modal de Detalhes -->
-    <div id="modal-detalhes" ...>
-        ...
-    </div>
-
     <!-- Janela Flutuante (Modal) de Medidas -->
-    <div id="modal-guia-medidas" class="modal-guia">
+    <div id="modal-guia-medidas" class="modal-guia" role="dialog" aria-modal="true" aria-labelledby="titulo-guia-medidas">
         <div class="modal-guia-conteudo">
-            <span class="fechar-guia" onclick="fecharGuiaMedidas()">&times;</span>
-            <h3>Guia de Tamanhos</h3>
+            <button type="button" class="fechar-guia" onclick="fecharGuiaMedidas()" aria-label="Fechar guia de tamanhos">&times;</button>
+            <h3 id="titulo-guia-medidas">Guia de Tamanhos</h3>
             <ul class="lista-medidas">
                 <li><strong>Tamanho Único:</strong> Veste 38 a 42</li>
                 <li><strong>G:</strong> Veste 42 a 44</li>
