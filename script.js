@@ -95,7 +95,10 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // 3. Transformamos suas funções em globais usando "window."
-    window.adicionarAoCarrinho = function(nome, preco, idCor, idTamanho) {
+    window.adicionarAoCarrinho = function(nome, precoOriginal, idCor, idTamanho) {
+        // Aplica o desconto de 50% automaticamente no carrinho
+        const precoComDesconto = precoOriginal * 0.50;
+
         const seletorCor = document.getElementById(idCor);
         const corEscolhida = seletorCor.options[seletorCor.selectedIndex].text;
         
@@ -103,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         carrinho.push({
             nomeItem: nome,
-            valor: preco,
+            valor: precoComDesconto, // Salva o valor já com os 50% de desconto
             cor: corEscolhida,
             tamanho: tamanhoEscolhido,
             quantidade: 1
@@ -191,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function() {
             `Endereço: ${endereco}\n\n` +
             `💳 Forma de pagamento: ${pagamento}\n\n` +
             `*Itens do pedido:*\n${textoItens}` +
-            `💰 *Total: R$ ${valorTotal.toFixed(2).replace('.', ',')}* + frete a combinar\n` +
+            `💰 *Total: R$ ${valorTotal.toFixed(2).replace('.', ',')} + frete a combinar*\n\n` +
             `💳 *${infoParcelamento}*\n\n` +
             `💚 *Pagamento via PIX:*\n` +
             `Tipo: Celular\n` +
@@ -246,6 +249,25 @@ document.addEventListener("DOMContentLoaded", function() {
         divItens.innerHTML += `<p style="margin-top: 15px; font-size: 14px; color: #b08d28; font-weight: bold;">💳 ${textoParcelamento}</p>`;
     }
 
+    // --- APLICAÇÃO AUTOMÁTICA DO DESCONTO DE 50% NO CATÁLOGO ---
+    const desconto = 0.50; 
+    const precos = document.querySelectorAll(".preco");
+
+    precos.forEach(elemento => {
+        const textoPreco = elemento.innerText;
+        const numeroLimpo = textoPreco.replace("R$", "").trim().replace(".", "").replace(",", ".");
+        const precoOriginal = parseFloat(numeroLimpo);
+
+        if (!isNaN(precoOriginal)) {
+            const precoNovo = precoOriginal * (1 - desconto);
+
+            elemento.innerHTML = `
+                <span class="preco-antigo">R$ ${precoOriginal.toFixed(2).replace('.', ',')}</span>
+                <span class="preco-novo">R$ ${precoNovo.toFixed(2).replace('.', ',')}</span>
+            `;
+        }
+    });
+
     // 5. Busca, filtros e ordenação do catálogo
     const normalizarTexto = (texto) => texto
         .normalize('NFD')
@@ -254,7 +276,8 @@ document.addEventListener("DOMContentLoaded", function() {
         .trim();
 
     const obterPreco = (produto) => {
-        const texto = produto.querySelector('.preco')?.textContent || '0';
+        // Pega o preço novo (com desconto) para que a ordenação por menor/maior preço funcione corretamente com o saldão
+        const texto = produto.querySelector('.preco-novo')?.textContent || produto.querySelector('.preco')?.textContent || '0';
         return Number(texto.replace(/[^\d,]/g, '').replace(',', '.')) || 0;
     };
 
@@ -345,7 +368,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const quantidade = correspondentes.length;
             const textoQuantidade = quantidade === 1 ? '1 peça encontrada' : `${quantidade} peças encontradas`;
             resultado.textContent = quantidade && totalPaginas > 1
-                ? `${textoQuantidade} • Página ${estadoCatalogo.pagina} de ${totalPaginas}`
+                ? `${textoQuantidade} - Página ${estadoCatalogo.pagina} de ${totalPaginas}`
                 : textoQuantidade;
         }
     }
@@ -401,7 +424,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const modal = document.getElementById('modal-foto');
         const modalContent = modal.querySelector('div');
         
-        // Restaura a estrutura original caso tenha sido alterada por um vídeo antes
         modalContent.innerHTML = `
             <button type="button" onclick="fecharModalFoto()" aria-label="Fechar imagem ampliada" style="position: absolute; top: -46px; right: 0; color: #fff; background: transparent; font-size: 30px; cursor: pointer; width:44px; padding:0;">&times;</button>
             <img id="img-modal-zoom" src="${caminhoImagem}" alt="Imagem ampliada do produto" style="width: 100%; max-height: 80vh; border-radius: 8px; border: 2px solid #D4AF37;">
@@ -419,7 +441,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
-    // Fecha o modal de zoom se clicar fora
     window.addEventListener('click', function(event) {
         const modal = document.getElementById('modal-foto');
         if (event.target === modal) {
@@ -427,7 +448,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // Chamada inicial para carregar o localStorage salvo na tela
     atualizarTelaDoCarrinho();
     atualizarBotaoFlutuante();
 
@@ -460,7 +480,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
-    // Fecha o modal do guia ao clicar fora da caixinha
     window.addEventListener('click', function(event) {
         const modal = document.getElementById('modal-guia-medidas');
         if (event.target === modal) {
@@ -485,7 +504,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
-    // Fecha o menu lateral se clicar fora da gaveta preta
     window.addEventListener('click', function(event) {
         const menu = document.getElementById('menu-lateral');
         if (event.target === menu) {

@@ -1342,3 +1342,18 @@ article.produto .carrossel-midia img,
         transition-duration: 0.01ms !important;
     }
 }
+
+/* Estilo para o preço antigo (riscado) */
+.preco-antigo {
+    text-decoration: line-through;
+    color: #888; /* Cor cinza mais discreta */
+    font-size: 14px;
+    margin-right: 8px;
+}
+
+/* Estilo para o novo preço promocional em destaque */
+.preco-novo {
+    color: #d4af37; /* Mantém o tom dourado da Vyva Moda */
+    font-weight: bold;
+    font-size: 18px;
+}
